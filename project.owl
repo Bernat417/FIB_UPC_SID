@@ -1,0 +1,553 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY untitled-ontology-7 "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#"
+     xml:base="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:untitled-ontology-7="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7">
+        <rdfs:comment>Ontologia</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#hasRelation -->
+
+    <owl:AnnotationProperty rdf:about="&untitled-ontology-7;hasRelation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Administra -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Administra">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Administrar_Medicina"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Medicina"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Asigna_tratamiento -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Asigna_tratamiento">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Prescripción"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Tratamiento"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Contiene_accion -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Contiene_accion">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Acción"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Tratamiento"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Dispone_calendario -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Dispone_calendario">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Calendario"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Esta_prescrito_a -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Esta_prescrito_a">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Paciente"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Prescripción"/>
+        <owl:inverseOf rdf:resource="&untitled-ontology-7;Tiene_prescrito"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Formado_por -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Formado_por">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Calendario"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Evento"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Identifica -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Identifica">
+        <rdfs:range rdf:resource="&untitled-ontology-7;LogIn"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Identificado_por -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Identificado_por">
+        <owl:inverseOf rdf:resource="&untitled-ontology-7;Identifica"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;LogIn"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Persona"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Incompatible -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Incompatible">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Dolencia"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Medio"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Padece -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Padece">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Dolencia"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Paciente"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Periodo_prescripcion -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Periodo_prescripcion">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Prescripción"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Time_Interval"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Pertenece_a_tratamiento -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Pertenece_a_tratamiento">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Acción"/>
+        <owl:inverseOf rdf:resource="&untitled-ontology-7;Contiene_accion"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Tratamiento"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Prescribe -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Prescribe">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Asistente_Sanitario"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Prescripción"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tiempo_Final -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Tiempo_Final">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Time_Interval"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Time_Point"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tiempo_evento -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Tiempo_evento">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Evento"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Time_Point"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tiempo_inicio -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Tiempo_inicio">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Time_Interval"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Time_Point"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tiene_acceso -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Tiene_acceso">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Aparato"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Paciente"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tiene_prescrito -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Tiene_prescrito">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Paciente"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Prescripción"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Utiliza -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Utiliza">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Aparato"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Medio"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#citado_con -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;citado_con">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Cita"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Persona"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#esta_citado -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;esta_citado">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Cita"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Paciente"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tiempo_cita -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;tiempo_cita">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Cita"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <rdfs:subPropertyOf rdf:resource="&untitled-ontology-7;citado_con"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tiene_cita -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;tiene_cita">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Cita"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Paciente"/>
+        <owl:inverseOf rdf:resource="&untitled-ontology-7;esta_citado"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Apellidos -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Apellidos">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Descripcion -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Descripcion">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Acción"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Dosis -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Dosis">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Administrar_Medicina"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Edad -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Edad">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Especialidad -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Especialidad">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Asistente_Sanitario"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Fecha -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Fecha">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <rdfs:range rdf:resource="&xsd;dateTimeStamp"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Mensaje -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Mensaje">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Evento"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Nombre_dolencia -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Nombre_dolencia">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Dolencia"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Nombre_persona -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Nombre_persona">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Password -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Password">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;LogIn"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Username -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Username">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;LogIn"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Acción -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Acción"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Actividad -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Actividad">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Acción"/>
+        <owl:disjointWith rdf:resource="&untitled-ontology-7;Administrar_Medicina"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Administrar_Medicina -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Administrar_Medicina">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Acción"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Aparato -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Aparato"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Asistente_Sanitario -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Asistente_Sanitario">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Persona"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Calendario -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Calendario"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Cita -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Cita"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Dolencia -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Dolencia"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Escrito -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Escrito">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Medio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Evento -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Evento"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#LogIn -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;LogIn"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Medicina -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Medicina"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Medio -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Medio"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Paciente -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Paciente">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Persona"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Persona -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Persona"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Prescripción -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Prescripción"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Sonoro -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Sonoro">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Medio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Temporal_Entity -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Temporal_Entity"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Granularity -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Time_Granularity"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Interval -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Time_Interval">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Temporal_Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Point -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Time_Point">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Temporal_Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Quantity -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Time_Quantity"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tratamiento -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Tratamiento"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Visual -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Visual">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Medio"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+

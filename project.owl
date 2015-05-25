@@ -181,6 +181,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tiempo_cita -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Tiempo_cita">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Cita"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Time_Point"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tiempo_evento -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;Tiempo_evento">
@@ -240,16 +249,6 @@
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;esta_citado">
         <rdfs:domain rdf:resource="&untitled-ontology-7;Cita"/>
         <rdfs:range rdf:resource="&untitled-ontology-7;Paciente"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tiempo_cita -->
-
-    <owl:ObjectProperty rdf:about="&untitled-ontology-7;tiempo_cita">
-        <rdfs:domain rdf:resource="&untitled-ontology-7;Cita"/>
-        <rdfs:range rdf:resource="&untitled-ontology-7;Time_Point"/>
-        <rdfs:subPropertyOf rdf:resource="&untitled-ontology-7;citado_con"/>
     </owl:ObjectProperty>
     
 

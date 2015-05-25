@@ -172,6 +172,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Realiza_accion -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Realiza_accion">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Acción"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Evento"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tiempo_Final -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;Tiempo_Final">
@@ -235,6 +244,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#cantidad_tiempo -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;cantidad_tiempo">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Time_Granularity"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Time_Quantity"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#citado_con -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;citado_con">
@@ -279,6 +297,14 @@
     <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Apellidos">
         <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
         <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Cantidad -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Cantidad">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Time_Quantity"/>
     </owl:DatatypeProperty>
     
 
@@ -364,6 +390,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Realizado -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Realizado">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Evento"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Username -->
 
     <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Username">
@@ -421,6 +456,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Año -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Año">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Time_Granularity"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Calendario -->
 
     <owl:Class rdf:about="&untitled-ontology-7;Calendario"/>
@@ -430,6 +473,14 @@
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Cita -->
 
     <owl:Class rdf:about="&untitled-ontology-7;Cita"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Dia -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Dia">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Time_Granularity"/>
+    </owl:Class>
     
 
 
@@ -453,6 +504,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Hora -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Hora">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Time_Granularity"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#LogIn -->
 
     <owl:Class rdf:about="&untitled-ontology-7;LogIn"/>
@@ -468,6 +527,22 @@
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Medio -->
 
     <owl:Class rdf:about="&untitled-ontology-7;Medio"/>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Mes -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Mes">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Time_Granularity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Minuto -->
+
+    <owl:Class rdf:about="&untitled-ontology-7;Minuto">
+        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Time_Granularity"/>
+    </owl:Class>
     
 
 

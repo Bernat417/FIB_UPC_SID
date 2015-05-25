@@ -324,7 +324,7 @@
 
     <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Fecha">
         <rdfs:domain rdf:resource="&untitled-ontology-7;Time_Point"/>
-        <rdfs:range rdf:resource="&xsd;dateTimeStamp"/>
+        <rdfs:range rdf:resource="&xsd;long"/>
     </owl:DatatypeProperty>
     
 

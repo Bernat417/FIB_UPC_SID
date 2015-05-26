@@ -271,6 +271,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#prescrito_por -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;prescrito_por">
+        <owl:inverseOf rdf:resource="&untitled-ontology-7;Prescribe"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tiene_cita -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;tiene_cita">
@@ -656,6 +664,7 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;José">
         <rdf:type rdf:resource="&untitled-ontology-7;Paciente"/>
+        <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
         <Edad rdf:datatype="&xsd;integer">65</Edad>
         <Apellidos>Perez</Apellidos>
         <Nombre_persona>José</Nombre_persona>
@@ -664,14 +673,40 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Maria -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Maria">
+        <rdf:type rdf:resource="&untitled-ontology-7;Asistente_Sanitario"/>
+        <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
+        <Edad rdf:datatype="&xsd;integer">40</Edad>
+        <Nombre_persona>Maria</Nombre_persona>
+        <Apellidos>Gonzalez</Apellidos>
+        <Prescribe rdf:resource="&untitled-ontology-7;P_Pedro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#P_Pedro -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;P_Pedro">
+        <rdf:type rdf:resource="&untitled-ontology-7;Prescripción"/>
+        <prescrito_por rdf:resource="&untitled-ontology-7;Maria"/>
+        <Esta_prescrito_a rdf:resource="&untitled-ontology-7;Pedro"/>
+        <Periodo_prescripcion rdf:resource="&untitled-ontology-7;Time_interval1"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Pedro -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Pedro">
+        <rdf:type rdf:resource="&untitled-ontology-7;Paciente"/>
         <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
         <Edad rdf:datatype="&xsd;integer">70</Edad>
         <Apellidos>Martinez</Apellidos>
         <Nombre_persona>Pedro</Nombre_persona>
         <Padece rdf:resource="&untitled-ontology-7;Alzheimer"/>
+        <Tiene_prescrito rdf:resource="&untitled-ontology-7;P_Pedro"/>
     </owl:NamedIndividual>
     
 
@@ -692,6 +727,34 @@
         <Utiliza rdf:resource="&untitled-ontology-7;Auditivo"/>
         <Utiliza rdf:resource="&untitled-ontology-7;Escrito"/>
         <Utiliza rdf:resource="&untitled-ontology-7;Visual"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_interval1 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Time_interval1">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Interval"/>
+        <Tiempo_inicio rdf:resource="&untitled-ontology-7;Time_point1"/>
+        <Tiempo_Final rdf:resource="&untitled-ontology-7;Time_point2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_point1 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Time_point1">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;integer">1432645200</Fecha>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_point2 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Time_point2">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;integer">1435323600</Fecha>
     </owl:NamedIndividual>
     
 

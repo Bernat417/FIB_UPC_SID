@@ -490,14 +490,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Escrito -->
-
-    <owl:Class rdf:about="&untitled-ontology-7;Escrito">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Medio"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Evento -->
 
     <owl:Class rdf:about="&untitled-ontology-7;Evento"/>
@@ -566,14 +558,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Sonoro -->
-
-    <owl:Class rdf:about="&untitled-ontology-7;Sonoro">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Medio"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Temporal_Entity -->
 
     <owl:Class rdf:about="&untitled-ontology-7;Temporal_Entity"/>
@@ -614,11 +598,118 @@
     
 
 
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Alzheimer -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Alzheimer">
+        <rdf:type rdf:resource="&untitled-ontology-7;Dolencia"/>
+        <Nombre_dolencia>Alzheimer</Nombre_dolencia>
+        <Incompatible rdf:resource="&untitled-ontology-7;Escrito"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Auditivo -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Auditivo">
+        <rdf:type rdf:resource="&untitled-ontology-7;Medio"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Correr_30_min -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Correr_30_min">
+        <rdf:type rdf:resource="&untitled-ontology-7;Actividad"/>
+        <Descripcion>Correr por el parque 30 minutos.</Descripcion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Escrito -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Escrito">
+        <rdf:type rdf:resource="&untitled-ontology-7;Medio"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Ibuprofeno_2_pastillas -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Ibuprofeno_2_pastillas">
+        <rdf:type rdf:resource="&untitled-ontology-7;Administrar_Medicina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#José -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;José">
+        <rdf:type rdf:resource="&untitled-ontology-7;Paciente"/>
+        <Edad rdf:datatype="&xsd;integer">65</Edad>
+        <Apellidos>Perez</Apellidos>
+        <Nombre_persona>José</Nombre_persona>
+        <Padece rdf:resource="&untitled-ontology-7;Sordera"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Pedro -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Pedro">
+        <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
+        <Edad rdf:datatype="&xsd;integer">70</Edad>
+        <Apellidos>Martinez</Apellidos>
+        <Nombre_persona>Pedro</Nombre_persona>
+        <Padece rdf:resource="&untitled-ontology-7;Alzheimer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Sordera -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Sordera">
+        <rdf:type rdf:resource="&untitled-ontology-7;Dolencia"/>
+        <Nombre_dolencia>Sordera</Nombre_dolencia>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Television -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Television">
+        <rdf:type rdf:resource="&untitled-ontology-7;Aparato"/>
+        <Utiliza rdf:resource="&untitled-ontology-7;Auditivo"/>
+        <Utiliza rdf:resource="&untitled-ontology-7;Escrito"/>
+        <Utiliza rdf:resource="&untitled-ontology-7;Visual"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tramiento_ejercicio -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Tramiento_ejercicio">
+        <rdf:type rdf:resource="&untitled-ontology-7;Tratamiento"/>
+        <Contiene_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Visual -->
 
-    <owl:Class rdf:about="&untitled-ontology-7;Visual">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-7;Medio"/>
-    </owl:Class>
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Visual">
+        <rdf:type rdf:resource="&untitled-ontology-7;Medio"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 

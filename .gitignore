@@ -1,3 +1,5 @@
 /sid/nbproject/private/
 /sid/build/
 /sid/dist/
+*.xml
+.DS_Store

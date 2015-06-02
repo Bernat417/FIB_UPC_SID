@@ -33,11 +33,12 @@ public class SidAgent extends Agent {
        
         
         OntModel model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
-        model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
+        
+        //model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
         
         try {
             //model1.read("file:/Users/alex/Documents/workspace/FIB_UPC_SID/project.owl", "RDF/XML");
-            model1.read("file:/Users/alex/Documents/workspace/FIB_UPC_SID/project.owl", "OWL-API");
+            model1.read("file:/Users/alex/Documents/workspace/FIB_UPC_SID/projectRDF.owl", "RDF/XML");
         }
         catch (JenaException je) {        
 
@@ -56,13 +57,13 @@ public class SidAgent extends Agent {
         
         String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
         OntClass att = model1.getOntClass(NS + "Paciente");
-        Individual I1 = model1.createIndividual(NS + "Alex", att);
-        OntClass att2 = model1.getOntClass(NS + "Nombre_persona");
-        Individual I2 = model1.createIndividual(NS + "Alex", att);
+        Individual I1 = model1.createIndividual(NS + "Adria", att);
+        //OntClass att2 = model1.getOntClass(NS + "Nombre_persona");
+        //Individual I2 = model1.createIndividual(NS + "Carlos", att);
 
         Property prop = model1.createProperty(NS +"Nombre_persona");
 
-        model1.add(I1, prop, "Alex");
+        model1.add(I1, prop, "Adria");
         
 
         
@@ -105,7 +106,7 @@ public class SidAgent extends Agent {
         if (!model1.isClosed())
         {
             try {
-                model1.write(new FileOutputStream("/Users/alex/Documents/workspace/FIB_UPC_SID/project.owl", true));
+                model1.write(new FileOutputStream("/Users/alex/Documents/workspace/FIB_UPC_SID/projectRDF.owl", false));
                 model1.close();
             } catch (Exception e) {
             }

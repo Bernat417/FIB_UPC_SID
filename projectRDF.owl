@@ -666,8 +666,8 @@
         <rdf:type rdf:resource="&untitled-ontology-7;Paciente"/>
         <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
         <Edad rdf:datatype="&xsd;integer">65</Edad>
-        <Apellidos>Perez</Apellidos>
         <Nombre_persona>José</Nombre_persona>
+        <Apellidos>Perez</Apellidos>
         <Padece rdf:resource="&untitled-ontology-7;Sordera"/>
     </owl:NamedIndividual>
     
@@ -679,8 +679,8 @@
         <rdf:type rdf:resource="&untitled-ontology-7;Asistente_Sanitario"/>
         <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
         <Edad rdf:datatype="&xsd;integer">40</Edad>
-        <Nombre_persona>Maria</Nombre_persona>
         <Apellidos>Gonzalez</Apellidos>
+        <Nombre_persona>Maria</Nombre_persona>
         <Prescribe rdf:resource="&untitled-ontology-7;P_Pedro"/>
     </owl:NamedIndividual>
     
@@ -703,8 +703,8 @@
         <rdf:type rdf:resource="&untitled-ontology-7;Paciente"/>
         <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
         <Edad rdf:datatype="&xsd;integer">70</Edad>
-        <Apellidos>Martinez</Apellidos>
         <Nombre_persona>Pedro</Nombre_persona>
+        <Apellidos>Martinez</Apellidos>
         <Padece rdf:resource="&untitled-ontology-7;Alzheimer"/>
         <Tiene_prescrito rdf:resource="&untitled-ontology-7;P_Pedro"/>
     </owl:NamedIndividual>
@@ -773,15 +773,8 @@
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Visual">
         <rdf:type rdf:resource="&untitled-ontology-7;Medio"/>
     </owl:NamedIndividual>
-</rdf:RDF>
 
-
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:untitled-ontology-7="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#" > 
+ 
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Identifica">
     <rdfs:domain rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Persona"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#LogIn"/>

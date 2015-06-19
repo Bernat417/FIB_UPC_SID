@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To do: 
+ * updateEvents -- Rellenar la priority queue de events
+ * checkEvents -- Buscar un agent de devices (nomes hi haura un) i enviar-li
+ * un mesage de contingut "showd:name:content", on content es la descripció
+ * de l'acció i name el nom del agent (this)
  */
 package sid;
 
@@ -11,6 +13,8 @@ package sid;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import java.util.Scanner;
+import jade.core.behaviours.CyclicBehaviour;
+
 
 
 import com.hp.hpl.jena.ontology.OntModel;
@@ -25,180 +29,91 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.shared.JenaException;
-import jade.core.Agent;
 import java.io.FileOutputStream;
 import java.util.Iterator;
+import jade.core.Agent;
+import jade.lang.acl.ACLMessage;
+import java.util.PriorityQueue;
 
-/**
- *
- * @author carlos
- */
 public class PatientAgent extends Agent {
      
+    public static final long threshold = 43200;
+            
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
-    
-    private void creaAccion(OntModel model1) {    
-        boolean correcta = false;
-        String nombreAccion = "";
-        String descripcionAccion  = "";
-        while (!correcta) {
-            System.out.println("Introduce el nombre de la acción: ");
-            nombreAccion = keyboard.nextLine();       
-            System.out.println("Introduce la descripcion de la accion");
-            descripcionAccion = keyboard.nextLine();
-
-           //Create a new query
-             String queryString = 
-            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
-            "SELECT * \n" +
-            "WHERE { ?accion a :Accion." +
-            "?paciente :Nombre_Accion " + nombreAccion +  ".\n" +
-            "}\n"+
-            "";
-
-             Query query = QueryFactory.create(queryString);
-
-             // Execute the query and obtain results
-             QueryExecution qe = QueryExecutionFactory.create(query, model1);
-             ResultSet results =  qe.execSelect();
-
-            results.hasNext();
-            if (results.hasNext()) 
-                 System.out.println("Ya exista la accion");
-            else 
-               correcta = true;
-            qe.close(); 
-        }   
-        
-        System.out.println("Tratamientos disponibles en el sistema");
-        
-        String queryString = 
-            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
-            "SELECT * \n" +
-            "WHERE { ?tratamiento a :Tratamiento." +
-            "}\n"+
-            "";
-
-        Query query = QueryFactory.create(queryString);
-        QueryExecution qe = QueryExecutionFactory.create(query, model1);
-        ResultSet results =  qe.execSelect();
-        ResultSetFormatter.out(System.out, results, query);
-        qe.close();
-        
-        correcta = false;
-        String nombreTratamiento = "";
-        while(!correcta) {
-           System.out.println("Introduce el nombre del tratamiento seleccionado");
-           nombreTratamiento = keyboard.nextLine();
-           
-           String queryStringTrat = 
-            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
-            "SELECT * \n" +
-            "WHERE { ?tratamiento a :Tratamiento." +
-            "}\n"+
-            "";
-
-            Query queryTrat = QueryFactory.create(queryStringTrat);
-            QueryExecution qeTrat = QueryExecutionFactory.create(queryTrat, model1);
-            ResultSet resultsTrat =  qe.execSelect();
+    OntModel model1;
+    PriorityQueue<Event> events;
             
-            if (resultsTrat.hasNext())
-                correcta = true;
-            else
-                System.out.println("Nombre de tratamiento incorrecto");
-                        
-           
-        }
-        
-        OntClass att = model1.getOntClass(NS + "Accion");
-        Individual I1 = model1.createIndividual(NS + nombreAccion, att);
-        Individual T = getTratamiento(model1,nombreTratamiento);
-        Property nombre = model1.createProperty(NS +"Nombre_accion");
-        Property descripcion = model1.createProperty(NS +"Descripcion");
-        Property pertenece = model1.createProperty(NS +"Pertenece_a_tratamiento");
-        model1.add(I1, nombre, nombreAccion);
-        model1.add(I1,descripcion,descripcionAccion);
-        model1.add(I1,pertenece,T);
- 
-    }
-   
-    public Individual getTratamiento(OntModel model1, String nombreTratamiento)
+    long endTime, currentTime;
+    
+    public class WaitInstructions extends CyclicBehaviour
     {
-        Iterator<OntClass> classesIt = model1.listNamedClasses();
-        Individual trat;
-        while ( classesIt.hasNext() )
+        public void checkEvents(String minutes)
         {
-            OntClass actual = classesIt.next();
-            OntClass Tratamiento = model1.getOntClass(actual.getURI() );
-            Property nombreTrat = model1.getProperty(NS + "Nombre_tratamiento");
-            for (Iterator i = model1.listIndividuals(Tratamiento); i.hasNext(); )
+            currentTime = Long.parseLong(minutes);
+            
+            if(currentTime > (endTime - threshold)) updateEvents((currentTime + 53280)+"");
+            
+            Event current = events.peek();
+            while(current != null && current.time <= currentTime)
             {
-                trat = (Individual) i.next(); 
-                RDFNode n = trat.getPropertyValue(nombreTrat); 
-                if (n.toString().equals(nombreTratamiento))
-                    return trat;
+                //send message to devices agent
             }
+            
+            
         }
-        return null;
         
-    }
-    
-    protected void setup() {
-       
-        // <--------------- if(not exists)añadir tratamiento a ontologia
-        /*if (option.equals("yes")) {
-            System.out.println("Introduce el nombre del tratamiento");
-            String nombreTratamiento = keyboard.nextLine();
-            System.out.println("¿Cuantas acciones lo forman?");
-            int numAcciones = keyboard.nextInt();
-            for (int i=0; i < numAcciones; ++i) {
-                System.out.println("Introduce el nombre de la accion");
-                String nombreAccion = keyboard.nextLine();
-                
-                System.out.println("Introduce la descripcion de la accion");
-                String descripcionAccion = keyboard.nextLine();
-                
-                System.out.println("Introduce la periodicidad de la accion");
-                String perioricidadAccion = keyboard.nextLine();
-                
-                // <--------------- if(not exists) añadir accion (i vincular preioricidad) a ontologia
+        public void updateEvents(String minutes)
+        {
+            //Rellena eventos hasta el tiempo de la entrada (endTime)
+            events = new PriorityQueue<Event>();
+            endTime = Long.parseLong(minutes);
+            
+            Event e = new Event("Take the drugs", 0);
+            //<--------------- CARLOS GUAPO DALE AQUI
+            //construir Entrades i afegirles a 
+            events.add(e);
+        }
+        
+        
+        public void action()
+        {
+            ACLMessage msg = myAgent.receive();
+            if(msg != null)
+            {
+                String s = msg.getContent();
+                String command = s.substring(0, Math.min(s.length(), 6));
+                String content = s.substring(Math.min(s.length(), 6),s.length());
+                if(command.equals("ntime:") ) checkEvents(content);
+                if(command.equals("updat:") ) updateEvents(content);
+                else System.out.println("Can't process the message");
             }
-            
-        }*/
-        
-        OntModel model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
-        
-        try {
-            
+            else block();
+        }
+
+    }
+    protected void setup() {
+        //Load Model
+        model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+        try {  
             model1.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
         }
         catch (JenaException je) {        
-
            System.out.println("ERROR");
-
            je.printStackTrace();
-
            System.exit(0);
-
-        }
-        
-        System.out.println("Selecciona una accion a realizar:");
-        System.out.println("1. Crear una accion");
-        int opcion = keyboard.nextInt();
-        if (opcion == 1)
-           creaAccion(model1);
-                
-                
-        if (!model1.isClosed())
-        {
-            try {
-                model1.write(new FileOutputStream("file:/home/bernat/Repo/SID/projectRDF.owl", false));
-                model1.close();
-            } catch (Exception e) {
-            }
-            
-        }     
-    }
+        }  
     
+        //Add Behaviours
+        WaitInstructions b = new WaitInstructions();
+        this.addBehaviour(b);
+        
+        currentTime = endTime = 0;
+        
+        
+        System.out.println("Patient Agent Ready");
+    }     
 }
+                
+                
+       

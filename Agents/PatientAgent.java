@@ -33,7 +33,7 @@ import java.util.Iterator;
  *
  * @author carlos
  */
-public class InterfaceAgent extends Agent {
+public class PatientAgent extends Agent {
      
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";

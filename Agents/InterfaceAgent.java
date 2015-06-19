@@ -39,9 +39,26 @@ public class InterfaceAgent extends Agent {
      
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
-    
+    OntModel model1;
+            
     public class WaitInstructions extends CyclicBehaviour
     {
+        public void print(String name)
+        {
+            String queryString = 
+                "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+                "SELECT * \n" +
+                "WHERE { ?lista"+ name +" a :" + name + "." +
+                "}\n"+
+                "";
+
+            Query query = QueryFactory.create(queryString);
+            QueryExecution qe = QueryExecutionFactory.create(query, model1);
+            ResultSet results =  qe.execSelect();
+            ResultSetFormatter.out(System.out, results, query);
+            qe.close();
+        }
+        
         public void action()
         {
             ACLMessage msg = myAgent.receive();
@@ -50,12 +67,8 @@ public class InterfaceAgent extends Agent {
                 String s = msg.getContent();
                 String command = s.substring(0, Math.min(s.length(), 6));
                 String content = s.substring(Math.min(s.length(), 6),s.length());
-                if(command.equals("print:") )
-                {
-                    System.out.println(command);
-                    System.out.println(content);
-                }
-                else System.out.println("yeah not that");
+                if(command.equals("print:") ) print(content);
+                else System.out.println("Can't process the message");
             }
             else block();
         }
@@ -63,30 +76,22 @@ public class InterfaceAgent extends Agent {
     }
     protected void setup() {
         //Load Model
-        OntModel model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
-        
-        try {
-            
+        model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+        try {  
             model1.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
         }
         catch (JenaException je) {        
-
            System.out.println("ERROR");
-
            je.printStackTrace();
-
            System.exit(0);
-
         }  
-        System.out.println("Selecciona una accion a realizar:");
-        
+    
         //Add Behaviours
         WaitInstructions b = new WaitInstructions();
         this.addBehaviour(b);
-    
-    }   
-    
-    
+        
+         System.out.println("Interface Agent Ready");
+    }     
 }
                 
                 

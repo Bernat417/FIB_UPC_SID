@@ -35,9 +35,9 @@ public class DevicesAgent extends Agent {
             //<-----------------------------------------
             //Aqui va la consulta sparql, que retorna el aparell
             
-            
             System.out.println("Avis a pacient " + name + " mitjançant " + aparell
             + " amb contingut " + contingut);
+            
         }
         
         public void action()
@@ -51,7 +51,7 @@ public class DevicesAgent extends Agent {
                 
                 //El missatge s'hauria de parsejar(showd:name:action_description)
                 switch (command) {
-                    case "showd:":  output("name",content);
+                    case "showd:":  output("idPaient",content);
                         break;
             
                     default: System.out.println("Can't process the message");
@@ -60,8 +60,9 @@ public class DevicesAgent extends Agent {
                 
             }
             else block();
+        
         }
-
+        
     }
     protected void setup() {
         model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);

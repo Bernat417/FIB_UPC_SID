@@ -10,8 +10,6 @@ package sid;
 //Cambia el path del modelo
 //Indica en el startGUI.sh donde se encuentra el jar de nuestro proyecto.
 
-import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.OntClass;
 import java.util.Scanner;
 import jade.core.behaviours.CyclicBehaviour;
 
@@ -24,17 +22,12 @@ import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.shared.JenaException;
-import java.io.FileOutputStream;
-import java.util.Iterator;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
-import java.util.PriorityQueue;
 
 public class PatientAgent extends Agent {
      
@@ -47,7 +40,7 @@ public class PatientAgent extends Agent {
     long endTime, currentTime;
     String username;
     String password;
-    String persona;
+    String dniPersona;
     
     public class WaitInstructions extends CyclicBehaviour
     {
@@ -91,12 +84,13 @@ public class PatientAgent extends Agent {
 
             String QueryString = 
             "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
-            "SELECT ?persona\n" +
+            "SELECT ?dni\n" +
             "WHERE {\n" +        
             "?login a :LogIn.\n" +
             "?login :Username ?user.\n" +
             "?login :Password ?pass.\n" +
-            "?login :Identifica ?persona." +        
+            "?login :Identifica ?persona." + 
+            "?persona :Dni ?dni." +        
             "FILTER regex(?user, ?u). \n" +
             "FILTER regex(?pass, ?p). \n" +
             "}\n"+ "";   
@@ -109,8 +103,9 @@ public class PatientAgent extends Agent {
             QueryExecution qe2 = QueryExecutionFactory.create(query, model1);
             ResultSet results =  qe2.execSelect();
             if (results.hasNext()) {
-                persona = results.next().get("persona").toString();
-                System.out.println(persona);
+                QuerySolution row = results.nextSolution();
+                dniPersona = row.getLiteral("dni").getString();
+                System.out.println(dniPersona);
                 correct = true;
                 System.out.println("Usuario correcto");
             }    

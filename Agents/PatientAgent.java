@@ -19,6 +19,7 @@ import jade.core.behaviours.CyclicBehaviour;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -42,37 +43,23 @@ public class PatientAgent extends Agent {
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
     OntModel model1;
-    PriorityQueue<Event> events;
             
     long endTime, currentTime;
+    String username;
+    String password;
+    String persona;
     
     public class WaitInstructions extends CyclicBehaviour
     {
+        Scanner keyboard = new Scanner(System.in);
+        
         public void checkEvents(String minutes)
         {
-            currentTime = Long.parseLong(minutes);
-            
-            if(currentTime > (endTime - threshold)) updateEvents((currentTime + 53280)+"");
-            
-            Event current = events.peek();
-            while(current != null && current.time <= currentTime)
-            {
-                //send message to devices agent
-            }
-            
             
         }
         
         public void updateEvents(String minutes)
         {
-            //Rellena eventos hasta el tiempo de la entrada (endTime)
-            events = new PriorityQueue<Event>();
-            endTime = Long.parseLong(minutes);
-            
-            Event e = new Event("Take the drugs", 0);
-            //<--------------- CARLOS GUAPO DALE AQUI
-            //construir Entrades i afegirles a 
-            events.add(e);
         }
         
         
@@ -92,11 +79,53 @@ public class PatientAgent extends Agent {
         }
 
     }
+    
+    public void login() {
+        boolean correct = false;
+        while (!correct) {
+
+            System.out.println("Introduce tu nombre de usuario:");
+            username = keyboard.nextLine();
+            System.out.println("Introduce tu contraseña: ");
+            password = keyboard.nextLine();
+
+            String QueryString = 
+            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+            "SELECT ?persona\n" +
+            "WHERE {\n" +        
+            "?login a :LogIn.\n" +
+            "?login :Username ?user.\n" +
+            "?login :Password ?pass.\n" +
+            "?login :Identifica ?persona." +        
+            "FILTER regex(?user, ?u). \n" +
+            "FILTER regex(?pass, ?p). \n" +
+            "}\n"+ "";   
+
+            ParameterizedSparqlString str = new ParameterizedSparqlString(QueryString);
+            str.setLiteral("u", username.toString());
+            str.setLiteral("p",password.toString());
+
+            Query query = QueryFactory.create(str.toString());
+            QueryExecution qe2 = QueryExecutionFactory.create(query, model1);
+            ResultSet results =  qe2.execSelect();
+            if (results.hasNext()) {
+                persona = results.next().get("persona").toString();
+                System.out.println(persona);
+                correct = true;
+                System.out.println("Usuario correcto");
+            }    
+            else
+                System.out.println("Usuario o contraseña incorrectos");
+            qe2.close();
+
+        }
+    }    
+    
     protected void setup() {
         //Load Model
         model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         try {  
-            model1.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
+            model1.read("file:/home/carlos/Documentos/sid/proyecto/projectRDF.owl", "RDF/XML");
         }
         catch (JenaException je) {        
            System.out.println("ERROR");
@@ -105,11 +134,10 @@ public class PatientAgent extends Agent {
         }  
     
         //Add Behaviours
-        WaitInstructions b = new WaitInstructions();
-        this.addBehaviour(b);
+        /*WaitInstructions b = new WaitInstructions();
+        this.addBehaviour(b); */
         
-        currentTime = endTime = 0;
-        
+        login();
         
         System.out.println("Patient Agent Ready");
     }     

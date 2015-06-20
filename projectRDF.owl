@@ -17,7 +17,9 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:untitled-ontology-7="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7"/>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7">
+        <rdfs:comment>Ontologia</rdfs:comment>
+    </owl:Ontology>
     
 
 
@@ -29,6 +31,12 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Nombre_accion -->
+
+    <owl:AnnotationProperty rdf:about="&untitled-ontology-7;Nombre_accion"/>
     
 
 
@@ -107,8 +115,8 @@
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Identifica -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;Identifica">
-        <rdfs:range rdf:resource="&untitled-ontology-7;LogIn"/>
-        <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;LogIn"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;Persona"/>
     </owl:ObjectProperty>
     
 
@@ -117,8 +125,8 @@
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;Identificado_por">
         <owl:inverseOf rdf:resource="&untitled-ontology-7;Identifica"/>
-        <rdfs:domain rdf:resource="&untitled-ontology-7;LogIn"/>
-        <rdfs:range rdf:resource="&untitled-ontology-7;Persona"/>
+        <rdfs:range rdf:resource="&untitled-ontology-7;LogIn"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
     </owl:ObjectProperty>
     
 
@@ -138,15 +146,6 @@
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;Padece">
         <rdfs:range rdf:resource="&untitled-ontology-7;Dolencia"/>
         <rdfs:domain rdf:resource="&untitled-ontology-7;Paciente"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Periodicidad -->
-
-    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Periodicidad">
-        <rdfs:domain rdf:resource="&untitled-ontology-7;Acción"/>
-        <rdfs:range rdf:resource="&untitled-ontology-7;Duracion"/>
     </owl:ObjectProperty>
     
 
@@ -320,7 +319,6 @@
 
     <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Cantidad">
         <rdfs:domain rdf:resource="&untitled-ontology-7;Time_Quantity"/>
-        <rdfs:range rdf:resource="&xsd;language"/>
     </owl:DatatypeProperty>
     
 
@@ -379,15 +377,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Nombre_accion -->
-
-    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Nombre_accion">
-        <rdfs:domain rdf:resource="&untitled-ontology-7;Acción"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Nombre_dolencia -->
 
     <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Nombre_dolencia">
@@ -401,15 +390,6 @@
 
     <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Nombre_persona">
         <rdfs:domain rdf:resource="&untitled-ontology-7;Persona"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Nombre_tratamiento -->
-
-    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Nombre_tratamiento">
-        <rdfs:domain rdf:resource="&untitled-ontology-7;Tratamiento"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -433,16 +413,19 @@
     
 
 
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tipo -->
-
-    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Tipo"/>
-    
-
-
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Username -->
 
     <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Username">
         <rdfs:domain rdf:resource="&untitled-ontology-7;LogIn"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#nombre_Tratamiento -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;nombre_Tratamiento">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Tratamiento"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -527,12 +510,6 @@
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Dolencia -->
 
     <owl:Class rdf:about="&untitled-ontology-7;Dolencia"/>
-    
-
-
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Duracion -->
-
-    <owl:Class rdf:about="&untitled-ontology-7;Duracion"/>
     
 
 
@@ -691,14 +668,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Corre_30_minutos -->
-
-    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Corre_30_minutos">
-        <rdf:type rdf:resource="&untitled-ontology-7;Acción"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Correr_30_min -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Correr_30_min">
@@ -737,6 +706,17 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Login_Pedro -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Login_Pedro">
+        <rdf:type rdf:resource="&untitled-ontology-7;LogIn"/>
+        <Username>Pedro</Username>
+        <Password>pwd</Password>
+        <Identifica rdf:resource="&untitled-ontology-7;Pedro"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Maria -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Maria">
@@ -771,6 +751,17 @@
         <Nombre_persona>Pedro</Nombre_persona>
         <Padece rdf:resource="&untitled-ontology-7;Alzheimer"/>
         <Tiene_prescrito rdf:resource="&untitled-ontology-7;P_Pedro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Sida -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Sida">
+        <rdf:type rdf:resource="&untitled-ontology-7;Acción"/>
+        <Nombre_accion>Sida</Nombre_accion>
+        <Descripcion>aaaaaaa</Descripcion>
+        <Pertenece_a_tratamiento rdf:resource="&untitled-ontology-7;Tramiento_ejercicio"/>
     </owl:NamedIndividual>
     
 
@@ -827,6 +818,7 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Tramiento_ejercicio">
         <rdf:type rdf:resource="&untitled-ontology-7;Tratamiento"/>
+        <nombre_Tratamiento>Tratamiento_ejercicio</nombre_Tratamiento>
         <Contiene_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
     </owl:NamedIndividual>
     
@@ -837,20 +829,6 @@
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Visual">
         <rdf:type rdf:resource="&untitled-ontology-7;Medio"/>
     </owl:NamedIndividual>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7">
-        <rdfs:comment>Ontologia</rdfs:comment>
-    </rdf:Description>
 </rdf:RDF>
 
 

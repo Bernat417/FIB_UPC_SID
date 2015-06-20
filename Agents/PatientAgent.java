@@ -5,7 +5,6 @@
  * un mesage de contingut "showd:name:content", on content es la descripció
  * de l'acció i name el nom del agent (this)
  */
-package sid;
 
 //Cambia el path del modelo
 //Indica en el startGUI.sh donde se encuentra el jar de nuestro proyecto.
@@ -28,6 +27,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.shared.JenaException;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
+import java.util.ArrayList;
 
 public class PatientAgent extends Agent {
      
@@ -44,18 +44,14 @@ public class PatientAgent extends Agent {
     
     public class WaitInstructions extends CyclicBehaviour
     {
-        Scanner keyboard = new Scanner(System.in);
+        
         
         public void checkEvents(String minutes)
         {
             
         }
-        
-        public void updateEvents(String minutes)
-        {
-        }
-        
-        
+      
+          
         public void action()
         {
             ACLMessage msg = myAgent.receive();
@@ -64,8 +60,7 @@ public class PatientAgent extends Agent {
                 String s = msg.getContent();
                 String command = s.substring(0, Math.min(s.length(), 6));
                 String content = s.substring(Math.min(s.length(), 6),s.length());
-                if(command.equals("ntime:") ) checkEvents(content);
-                if(command.equals("updat:") ) updateEvents(content);
+                if(command.equals("ctime:") ) checkEvents(content);
                 else System.out.println("Can't process the message");
             }
             else block();
@@ -116,6 +111,45 @@ public class PatientAgent extends Agent {
         }
     }    
     
+    
+    public ArrayList<String> eventsActuals(long minuts) {
+        ArrayList<String> avisos = new ArrayList <String>();
+        String QueryString = 
+            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+            "SELECT ?descripcion\n" +
+            "WHERE {\n" +        
+            "?login a :LogIn.\n" +
+            "?login :Username ?user.\n" +
+            "?login :Identifica ?persona.\n" +
+            "?persona :Dispone_calendario ?calendario.\n" + 
+            "?calendario :Formado_por ?evento.\n" +
+            "?evento :Tiempo_evento ?timePoint.\n" +
+            "?timePoint :Fecha ?fecha." +
+            "?evento :Realiza_accion ?accion.\n" +
+            "?accion :Descripcion ?descripcion.\n" +    
+            "FILTER regex(?user, ?u). \n" +
+            "FILTER (?fecha = ?minuts). \n" +
+            "}\n"+ "";  
+        
+        ParameterizedSparqlString str = new ParameterizedSparqlString(QueryString);
+        str.setLiteral("u", username.toString());
+        str.setLiteral("minuts",minuts);
+        
+        Query query = QueryFactory.create(str.toString());
+        QueryExecution qe2 = QueryExecutionFactory.create(query, model1);
+        ResultSet results =  qe2.execSelect();
+        while(results.hasNext()) {
+             QuerySolution row = results.nextSolution();
+             avisos.add("showd:" + username + ":" + row.getLiteral("descripcion").getString());
+        }
+        
+        qe2.close();
+
+        
+        return avisos;
+        
+    }
+    
     protected void setup() {
         //Load Model
         model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
@@ -133,6 +167,12 @@ public class PatientAgent extends Agent {
         this.addBehaviour(b); */
         
         login();
+        
+        ArrayList <String> avisos = eventsActuals((long)1432645200);
+        
+        for (int i=0; i < avisos.size(); ++i) {
+            System.out.println(avisos.get(i));
+        }
         
         System.out.println("Patient Agent Ready");
     }     

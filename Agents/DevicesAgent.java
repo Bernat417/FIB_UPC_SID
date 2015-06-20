@@ -1,22 +1,9 @@
-/*
- * To do:
- * - Completar la funcio output, cercar un aparato valid per un pacient random (encara
- * no hem asociat pacient a pacientAgent). Ha de ser un device valid no incompatible
- * amb cap de les dolencies.
- * - Parsejar el missatge de action. Detalls a la funcio
- */
 package sid;
-
-//Cambia el path del modelo
-//Indica en el startGUI.sh donde se encuentra el jar de nuestro proyecto.
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import java.util.Scanner;
 import jade.core.behaviours.CyclicBehaviour;
-
-
-
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.Query;
@@ -33,21 +20,18 @@ import java.io.FileOutputStream;
 import java.util.Iterator;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
-/**
- *
- * @author carlos
- */
+
 public class DevicesAgent extends Agent {
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
-    OntModel model1;
+    OntModel model;
             
     public class WaitInstructions extends CyclicBehaviour
     {
-        public void output(String name, String contingut)
+        public void output(String idPacient, String contingut)
         {
             String aparell = "";
-            
+            String name  = "";
             //<-----------------------------------------
             //Aqui va la consulta sparql, que retorna el aparell
             
@@ -66,19 +50,24 @@ public class DevicesAgent extends Agent {
                 String content = s.substring(Math.min(s.length(), 6),s.length());
                 
                 //El missatge s'hauria de parsejar(showd:name:action_description)
+                switch (command) {
+                    case "showd:":  output("name",content);
+                        break;
+            
+                    default: System.out.println("Can't process the message");
+                        break;
+                }
                 
-                if(command.equals("showd:") ) output("name",content);
-                else System.out.println("Can't process the message");
             }
             else block();
         }
 
     }
     protected void setup() {
-        //Load Model
-        model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+        model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+        
         try {  
-            model1.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
+            model.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
         }
         catch (JenaException je) {        
            System.out.println("ERROR");
@@ -86,12 +75,13 @@ public class DevicesAgent extends Agent {
            System.exit(0);
         }  
     
-        //Add Behaviours
         WaitInstructions b = new WaitInstructions();
         this.addBehaviour(b);
         
         System.out.println("Interface Agent Ready");
+    
     }     
+
 }
                 
                 

@@ -27,7 +27,9 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.shared.JenaException;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PatientAgent extends Agent {
      
@@ -42,8 +44,15 @@ public class PatientAgent extends Agent {
     String password;
     String dniPersona;
     
+    public String calcularFecha(long minuts) {
+            minuts = minuts * 60000;
+            return new Date(new Timestamp(minuts).getTime()).toString();
+        }
+        
+    
     public class WaitInstructions extends CyclicBehaviour
     {
+        
         
         
         public void checkEvents(String minutes)
@@ -129,7 +138,9 @@ public class PatientAgent extends Agent {
             "FILTER regex(?user,?u).\n" +    
             "FILTER(?fecha >= ?current).\n" +
             "FILTER(?fecha <= ?fecha4sem).\n" +
-            "}\n" + " ";
+            "}\n" + 
+             "ORDER BY (?fecha) ";
+        
         
             ParameterizedSparqlString str = new ParameterizedSparqlString(QueryString);
             str.setLiteral("u", username.toString());
@@ -141,13 +152,14 @@ public class PatientAgent extends Agent {
             ResultSet results =  qe.execSelect();
             
             System.out.println("Fecha                           Descripcion");
+            System.out.println("------------------------------------------------------------");
             while(results.hasNext()) {
                 QuerySolution row = results.nextSolution();
-                System.out.print(Long.valueOf(row.getLiteral("fecha").getLong()));
+                System.out.print(calcularFecha(row.getLiteral("fecha").getLong()));
                 System.out.print(" ");
                 System.out.println(row.getLiteral("descripcion").getString());
             }
-                                    
+            System.out.println("------------------------------------------------------------");                        
                 
     }
     

@@ -14,6 +14,7 @@ import jade.domain.FIPAAgentManagement.*;
 
 public class ClockAgent extends Agent {
      
+    private String URL_ONTOLOGIA = "/Users/alex/Documents/workspace/FIB_UPC_SID/projectRDF.owl";
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
     OntModel model;
@@ -99,7 +100,7 @@ public class ClockAgent extends Agent {
         model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         
         try {  
-            model.read("file:/home2/users/alumnes/1161756/SID/projectRDF.owl", "RDF/XML");
+            model.read("file:" + URL_ONTOLOGIA, "RDF/XML");
         }
         catch (JenaException je) {        
            System.out.println("ERROR");

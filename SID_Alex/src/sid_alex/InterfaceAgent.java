@@ -16,7 +16,8 @@ import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
 
 public class InterfaceAgent extends Agent {
-     
+    
+    private String URL_ONTOLOGIA = "/Users/alex/Documents/workspace/FIB_UPC_SID/projectRDF.owl";
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
     OntModel model;
@@ -68,7 +69,7 @@ public class InterfaceAgent extends Agent {
         model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         
         try {  
-            model.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
+            model.read("file:" + URL_ONTOLOGIA, "RDF/XML");
         }
         catch (JenaException je) {        
            System.out.println("ERROR");

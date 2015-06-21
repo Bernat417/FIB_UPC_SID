@@ -6,10 +6,12 @@ import java.util.Scanner;
 import jade.core.behaviours.CyclicBehaviour;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -20,6 +22,7 @@ import java.io.FileOutputStream;
 import java.util.Iterator;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
+import java.util.ArrayList;
 
 public class DevicesAgent extends Agent {
     Scanner keyboard = new Scanner(System.in);
@@ -30,13 +33,40 @@ public class DevicesAgent extends Agent {
     {
         public void output(String idPacient, String contingut)
         {
-            String aparell = "";
-            String name  = "";
-            //<-----------------------------------------
-            //Aqui va la consulta sparql, que retorna el aparell
+            String[] parts = contingut.split(":");
+            contingut = parts[1];
+            String name  = parts[0];
+            ArrayList<String> avisos = new ArrayList <String>();
             
-            System.out.println("Avis a pacient " + name + " mitjançant " + aparell
-            + " amb contingut " + contingut);
+            String QueryString = 
+            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+            "SELECT ?nombreAparato\n" +
+            "WHERE {\n" +   
+            "?paciente a :Paciente.\n" +
+            "?paciente :Nombre_persona ?nombrePaciente.\n" +
+            "FILTER regex(?nombrePaciente, ?np). \n" +
+            "?paciente :Padece ?dolencia.\n" +
+            "?dolencia :Incompatible ?medioDolencia.\n" +      
+            "?paciente :Tiene_acceso ?aparato.\n" +
+            "?aparato :Utiliza ?medioAparato.\n" +
+            "FILTER (?medioDolencia != ?medioAparato).\n" +
+            "?aparato :Nombre_aparato ?nombreAparato.\n" +
+            "}\n"+ "";
+            
+            ParameterizedSparqlString str = new ParameterizedSparqlString(QueryString);
+            str.setLiteral("np", name);
+            Query query = QueryFactory.create(str.toString());
+            QueryExecution qe2 = QueryExecutionFactory.create(query, model);
+            ResultSet results =  qe2.execSelect();
+            if (results.hasNext()) {
+                QuerySolution row = results.nextSolution();
+                System.out.println("Avis a pacient " + name + " mitjançant " + row.getLiteral("nombreAparato").getString()
+            + " amb contingut " + contingut);    
+            } else {
+                System.out.println("Ningun aparell disponible");
+            }
+
+            qe2.close();
             
         }
         
@@ -48,15 +78,21 @@ public class DevicesAgent extends Agent {
                 String s = msg.getContent();
                 String command = s.substring(0, Math.min(s.length(), 6));
                 String content = s.substring(Math.min(s.length(), 6),s.length());
-                
                 //El missatge s'hauria de parsejar(showd:name:action_description)
+                //Hotfix
+                if (command.equals("showd:")) {
+                    output("idPaient",content);  
+                } else {
+                    System.out.println("Can't process the message");
+                }
+                /**
                 switch (command) {
                     case "showd:":  output("idPaient",content);
                         break;
             
                     default: System.out.println("Can't process the message");
                         break;
-                }
+                }*/
                 
             }
             else block();
@@ -68,7 +104,7 @@ public class DevicesAgent extends Agent {
         model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         
         try {  
-            model.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
+            model.read("file:/home/adria/SID/projectRDF.owl", "RDF/XML");
         }
         catch (JenaException je) {        
            System.out.println("ERROR");

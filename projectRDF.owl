@@ -714,6 +714,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Calendario_Jose -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Calendario_Jose">
+        <rdf:type rdf:resource="&untitled-ontology-7;Calendario"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Calendario_Pedro -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Calendario_Pedro">
@@ -725,6 +733,7 @@
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Correr_30_min -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Correr_30_min">
+        <rdf:type rdf:resource="&untitled-ontology-7;Acción"/>
         <rdf:type rdf:resource="&untitled-ontology-7;Actividad"/>
         <Descripcion>Correr por el parque 30 minutos.</Descripcion>
         <Periodicidad_accion rdf:resource="&untitled-ontology-7;TQ_Correr_30_min"/>
@@ -743,7 +752,17 @@
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Ibuprofeno_2_pastillas -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Ibuprofeno_2_pastillas">
+        <rdf:type rdf:resource="&untitled-ontology-7;Acción"/>
         <rdf:type rdf:resource="&untitled-ontology-7;Administrar_Medicina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Infarto -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Infarto">
+        <rdf:type rdf:resource="&untitled-ontology-7;Dolencia"/>
+        <Nombre_dolencia>Infarto</Nombre_dolencia>
     </owl:NamedIndividual>
     
 
@@ -757,6 +776,30 @@
         <Apellidos>Perez</Apellidos>
         <Nombre_persona>José</Nombre_persona>
         <Padece rdf:resource="&untitled-ontology-7;Sordera"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Juan -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Juan">
+        <rdf:type rdf:resource="&untitled-ontology-7;Asistente_Sanitario"/>
+        <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
+        <Edad rdf:datatype="&xsd;integer">35</Edad>
+        <Nombre_persona>Juan</Nombre_persona>
+        <Apellidos>Fernandez</Apellidos>
+        <Prescribe rdf:resource="&untitled-ontology-7;José"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Login_Jose -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Login_Jose">
+        <rdf:type rdf:resource="&untitled-ontology-7;LogIn"/>
+        <Password>jos</Password>
+        <Username>Jose</Username>
+        <Identifica rdf:resource="&untitled-ontology-7;José"/>
     </owl:NamedIndividual>
     
 
@@ -781,6 +824,18 @@
         <Nombre_persona>Maria</Nombre_persona>
         <Apellidos>Gonzalez</Apellidos>
         <Prescribe rdf:resource="&untitled-ontology-7;P_Pedro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Movil -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Movil">
+        <rdf:type rdf:resource="&untitled-ontology-7;Aparato"/>
+        <Nombre_aparato>Movil</Nombre_aparato>
+        <Utiliza rdf:resource="&untitled-ontology-7;Auditivo"/>
+        <Utiliza rdf:resource="&untitled-ontology-7;Escrito"/>
+        <Utiliza rdf:resource="&untitled-ontology-7;Visual"/>
     </owl:NamedIndividual>
     
 
@@ -885,13 +940,12 @@
     
 
 
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Sida -->
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Radio -->
 
-    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Sida">
-        <rdf:type rdf:resource="&untitled-ontology-7;Acción"/>
-        <Nombre_accion>Sida</Nombre_accion>
-        <Descripcion>aaaaaaa</Descripcion>
-        <Pertenece_a_tratamiento rdf:resource="&untitled-ontology-7;Tramiento_ejercicio"/>
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Radio">
+        <rdf:type rdf:resource="&untitled-ontology-7;Aparato"/>
+        <Nombre_aparato>Radio</Nombre_aparato>
+        <Utiliza rdf:resource="&untitled-ontology-7;Auditivo"/>
     </owl:NamedIndividual>
     
 
@@ -918,7 +972,7 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Television">
         <rdf:type rdf:resource="&untitled-ontology-7;Aparato"/>
-        <Nombre_aparato>television de Pedro</Nombre_aparato>
+        <Nombre_aparato>Television</Nombre_aparato>
         <Utiliza rdf:resource="&untitled-ontology-7;Auditivo"/>
         <Utiliza rdf:resource="&untitled-ontology-7;Visual"/>
     </owl:NamedIndividual>
@@ -976,7 +1030,6 @@
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;adsdas">
         <rdf:type rdf:resource="&untitled-ontology-7;Tratamiento"/>
         <Nombre_tratamiento>adsdas</Nombre_tratamiento>
-        <Contiene_accion rdf:resource="&untitled-ontology-7;Sida"/>
     </owl:NamedIndividual>
     
 

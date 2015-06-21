@@ -61,8 +61,8 @@ public class DevicesAgent extends Agent {
             ResultSet results =  qe2.execSelect();
             if (results.hasNext()) {
                 QuerySolution row = results.nextSolution();
-                System.out.println("Avis a pacient " + name + " mitjançant " + row.getLiteral("nombreAparato").getString()
-            + " amb contingut " + contingut);    
+                System.out.println("Avisa al paciente " + name + " mediante " + row.getLiteral("nombreAparato").getString()
+            + " con contedido " + contingut);    
             } else {
                 System.out.println("Ningun aparell disponible");
             }

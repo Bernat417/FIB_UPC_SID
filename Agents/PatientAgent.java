@@ -79,13 +79,12 @@ public class PatientAgent extends Agent {
 
             String QueryString = 
             "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
-            "SELECT ?dni\n" +
+            "SELECT *\n" +
             "WHERE {\n" +        
             "?login a :LogIn.\n" +
             "?login :Username ?user.\n" +
             "?login :Password ?pass.\n" +
-            "?login :Identifica ?persona." + 
-            "?persona :Dni ?dni." +        
+            "?login :Identifica ?persona." +        
             "FILTER regex(?user, ?u). \n" +
             "FILTER regex(?pass, ?p). \n" +
             "}\n"+ "";   
@@ -98,9 +97,9 @@ public class PatientAgent extends Agent {
             QueryExecution qe2 = QueryExecutionFactory.create(query, model1);
             ResultSet results =  qe2.execSelect();
             if (results.hasNext()) {
-                QuerySolution row = results.nextSolution();
+                /*QuerySolution row = results.nextSolution();
                 dniPersona = row.getLiteral("dni").getString();
-                System.out.println(dniPersona);
+                System.out.println(dniPersona);*/
                 correct = true;
                 System.out.println("Usuario correcto");
             }    

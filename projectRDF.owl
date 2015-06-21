@@ -196,9 +196,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432760400">
-    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1435323600</untitled-ontology-7:Fecha>
+    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1432760400</untitled-ontology-7:Fecha>
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Point"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Granularity">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -295,9 +294,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432789200">
-    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1435323600</untitled-ontology-7:Fecha>
+    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1432789200</untitled-ontology-7:Fecha>
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Point"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Medicina">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -417,14 +415,12 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432731600">
-    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1435323600</untitled-ontology-7:Fecha>
+    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1432731600</untitled-ontology-7:Fecha>
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Point"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432674000">
-    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1435323600</untitled-ontology-7:Fecha>
+    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1432674000</untitled-ontology-7:Fecha>
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Point"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Juan">
     <untitled-ontology-7:Prescribe rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#José"/>
@@ -496,12 +492,6 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#LogIn"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min">
-    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1435323600</untitled-ontology-7:Fecha>
-    <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Point"/>
-    <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Evento"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tiene_cita">
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#esta_citado"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Paciente"/>
@@ -530,9 +520,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432645200">
-    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1435323600</untitled-ontology-7:Fecha>
+    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1432645200</untitled-ontology-7:Fecha>
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Point"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Password">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -543,9 +532,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432702800">
-    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1435323600</untitled-ontology-7:Fecha>
+    <untitled-ontology-7:Fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1432702800</untitled-ontology-7:Fecha>
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Time_Point"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Administrar_Medicina">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Acción"/>
@@ -572,17 +560,17 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Calendario"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#nombre_Tratamiento">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tratamiento"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#PedroCorrer_30_min1432645200">
     <untitled-ontology-7:Tiempo_evento rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432645200"/>
     <untitled-ontology-7:Realiza_accion rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Correr_30_min"/>
     <untitled-ontology-7:Pertenece_a_calendario rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Calendario_Pedro"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Evento"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#nombre_Tratamiento">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Tratamiento"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Sordera">
     <untitled-ontology-7:Nombre_dolencia>Sordera</untitled-ontology-7:Nombre_dolencia>

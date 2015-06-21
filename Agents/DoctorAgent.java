@@ -209,6 +209,70 @@ public class DoctorAgent extends Agent {
                 System.out.println("Nombre de acción incorrecto");                  
         }  
     }
+    
+    public void crearPrescripcion() {
+        int id = 1;
+        String queryString = 
+            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+            "SELECT ?max \n" +
+            "WHERE { ?prescripcion a :Prescripción." +
+            "?prescripcion :Id_prescripcion ?max." +    
+            "}\n"+
+            "ORDER BY DESC(?max) LIMIT 1" +    
+            "";
+        
+        Query query = QueryFactory.create(queryString);
+        QueryExecution qe = QueryExecutionFactory.create(query, model1);
+        ResultSet results =  qe.execSelect();
+        if (results.hasNext()) {
+            QuerySolution row = results.nextSolution();
+            id = row.getLiteral("max").getInt() + 1;
+        }
+        qe.close();
+        
+        System.out.println("Selecciona al paciente al que se va a prescribir: ");
+        
+        System.out.println("Tratamientos disponibles en el sistema");
+        
+        String queryPaciente = 
+            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+            "SELECT * \n" +
+            "WHERE { ?tratamiento a :Tratamiento." +
+            "}\n"+
+            "";
+
+        Query query2 = QueryFactory.create(queryPaciente);
+        QueryExecution qe2 = QueryExecutionFactory.create(query2, model1);
+        ResultSet resultsPaciente =  qe2.execSelect();
+        ResultSetFormatter.out(System.out, resultsPaciente, query2);
+        qe2.close();
+        Individual T;
+        
+        boolean correcta = false;
+        String nombreTratamiento = "";
+        while(!correcta) {
+           System.out.println("Introduce el nombre del tratamiento seleccionado");
+           nombreTratamiento = keyboard.nextLine();
+
+            Individual t = getIndividual(nombreTratamiento);
+            
+            if (t != null) {
+                correcta = true;
+                OntClass att = model1.getOntClass(NS + "Acción");
+                Individual I1 = model1.createIndividual(NS + nombreA, att);
+                Property nombre = model1.createProperty(NS +"Nombre_accion");
+                Property descripcion = model1.createProperty(NS +"Descripcion");
+                Property pertenece = model1.createProperty(NS +"Pertenece_a_tratamiento");
+                model1.add(I1, nombre, nombreAccion);
+                model1.add(I1,descripcion,descripcionAccion);
+                model1.add(I1,pertenece,t);
+            }
+            else
+                System.out.println("Nombre de tratamiento incorrecto");         
+           
+        }
+        
+    }
    
     public Individual getIndividual(String nombre)
     {
@@ -249,12 +313,15 @@ public class DoctorAgent extends Agent {
         System.out.println("Selecciona una accion a realizar:");
         System.out.println("1. Crear una accion");
         System.out.println("2. Crear un tratamiento");
+        System.out.println("3. Crear una prescripcion.");
         String opcion = keyboard.nextLine();
         
         if (opcion.equals("1")) 
            creaAccion();
         else if(opcion.equals("2"))
            creaTratamiento();
+        else if(opcion.equals("3"))
+           crearPrescripcion();
                 
         //Create a new query
              String queryString = 

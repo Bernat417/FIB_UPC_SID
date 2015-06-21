@@ -111,6 +111,47 @@ public class PatientAgent extends Agent {
     }    
     
     
+    
+    public void consultarCalendario(long currentTime) {
+        String QueryString =
+            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+            "SELECT ?fecha ?descripcion\n" +
+            "WHERE {\n" +   
+            "?login a :LogIn.\n" +
+            "?login :Username ?user.\n" +   
+            "?login :Identifica ?persona.\n" +
+            "?persona :Dispone_calendario ?calendario.\n" +
+            "?calendario :Formado_por ?evento.\n" +
+            "?evento :Tiempo_evento ?timePoint.\n" +
+            "?timePoint :Fecha ?fecha.\n" + 
+            "?evento :Realiza_accion ?accion.\n" +
+            "?accion :Descripcion ?descripcion.\n" +
+            "FILTER regex(?user,?u).\n" +    
+            "FILTER(?fecha >= ?current).\n" +
+            "FILTER(?fecha <= ?fecha4sem).\n" +
+            "}\n" + " ";
+        
+            ParameterizedSparqlString str = new ParameterizedSparqlString(QueryString);
+            str.setLiteral("u", username.toString());
+            str.setLiteral("current",currentTime);
+            str.setLiteral("fecha4sem",(currentTime + 4*7*24*60));
+            
+            Query query = QueryFactory.create(str.toString());
+            QueryExecution qe = QueryExecutionFactory.create(query, model1);
+            ResultSet results =  qe.execSelect();
+            
+            System.out.println("Fecha                           Descripcion");
+            while(results.hasNext()) {
+                QuerySolution row = results.nextSolution();
+                System.out.print(Long.valueOf(row.getLiteral("fecha").getLong()));
+                System.out.print(" ");
+                System.out.println(row.getLiteral("descripcion").getString());
+            }
+                                    
+                
+    }
+    
+    
     public ArrayList<String> eventsActuals(long minuts) {
         ArrayList<String> avisos = new ArrayList <String>();
         String QueryString = 
@@ -168,6 +209,10 @@ public class PatientAgent extends Agent {
         login();
         
         ArrayList <String> avisos = eventsActuals((long)1432674000);
+        
+        consultarCalendario(1432674000);
+        
+        
         
         for (int i=0; i < avisos.size(); ++i) {
             System.out.println(avisos.get(i));

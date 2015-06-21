@@ -1,5 +1,4 @@
-
-   
+package sid;
 
 import java.util.Scanner;
 import jade.core.behaviours.CyclicBehaviour;
@@ -45,22 +44,13 @@ public class DevicesAgent extends Agent {
             "WHERE {\n" +   
             "?paciente a :Paciente.\n" +
             "?paciente :Nombre_persona ?nombrePaciente.\n" +
-<<<<<<< HEAD
-            "FILTER regex(?nombrePaciente, ?np). \n" +
-=======
->>>>>>> 0c235fa6e20badcd0fcdb49371c75e67e7b02615
             "?paciente :Padece ?dolencia.\n" +
             "?dolencia :Incompatible ?medioDolencia.\n" +      
             "?paciente :Tiene_acceso ?aparato.\n" +
             "?aparato :Utiliza ?medioAparato.\n" +
-<<<<<<< HEAD
-            "FILTER (?medioDolencia != ?medioAparato).\n" +
-            "?aparato :Nombre_aparato ?nombreAparato.\n" +
-=======
             "?aparato :Nombre_aparato ?nombreAparato.\n" +
             "FILTER regex(?nombrePaciente, ?np). \n" +
             "FILTER (?medioDolencia != ?medioAparato).\n" +        
->>>>>>> 0c235fa6e20badcd0fcdb49371c75e67e7b02615
             "}\n"+ "";
             
             ParameterizedSparqlString str = new ParameterizedSparqlString(QueryString);
@@ -91,7 +81,10 @@ public class DevicesAgent extends Agent {
                 //El missatge s'hauria de parsejar(showd:name:action_description)
                 //Hotfix
                 if (command.equals("showd:")) {
-                    output("idPaient",content);  
+                    System.out.println("Can't process the message " + content);
+                    output("idPaient",content);
+                    
+                   
                 } else {
                     System.out.println("Can't process the message");
                 }
@@ -114,11 +107,7 @@ public class DevicesAgent extends Agent {
         model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         
         try {  
-<<<<<<< HEAD
-            model.read("file:/home/adria/SID/projectRDF.owl", "RDF/XML");
-=======
-           model.read("file:/home/carlos/Documentos/sid/proyecto/projectRDF.owl", "RDF/XML");
->>>>>>> 0c235fa6e20badcd0fcdb49371c75e67e7b02615
+           model.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
         }
         catch (JenaException je) {        
            System.out.println("ERROR");
@@ -129,7 +118,7 @@ public class DevicesAgent extends Agent {
         WaitInstructions b = new WaitInstructions();
         this.addBehaviour(b);
         
-        System.out.println("Interface Agent Ready");
+        System.out.println("Devices Agent Ready");
     
     }     
 

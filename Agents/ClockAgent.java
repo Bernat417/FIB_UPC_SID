@@ -84,7 +84,7 @@ public class ClockAgent extends Agent {
                 msg.setContent("ctime:"+time);
                 msg.addReceiver(targetAgents[i]);
                 send(msg);
-                System.out.println("New time is "+time + targetAgents[i]);
+                //System.out.println("New time is "+time + targetAgents[i]);
             } 
             
             try 
@@ -99,6 +99,21 @@ public class ClockAgent extends Agent {
             }
         }
         
+        public void sendTime(String minutes)
+        {
+            if(!linked) connectAgents();
+            
+            for (int i=0; i < targetAgents.length; i++)
+            {
+                ACLMessage msg = new ACLMessage( ACLMessage.INFORM );
+                msg.setContent("ctime:"+Long.valueOf(minutes));
+                msg.addReceiver(targetAgents[i]);
+                send(msg);
+            } 
+            
+            System.out.println("sending time" + Long.valueOf(minutes));
+        }
+        
         public void action()
         {
             ACLMessage msg = myAgent.receive();
@@ -110,7 +125,7 @@ public class ClockAgent extends Agent {
                 String content = s.substring(Math.min(s.length(), 6),s.length());
                 
                 if(command.equals("stime:"))
-                    time = Long.parseLong(content);
+                    sendTime(content);
                 
                 else if(command.equals("tfrez:"))
                     freeze = !freeze;

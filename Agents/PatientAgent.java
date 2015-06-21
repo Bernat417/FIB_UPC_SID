@@ -102,9 +102,13 @@ public class PatientAgent extends Agent {
             Query query = QueryFactory.create(str.toString());            
             QueryExecution qe2 = QueryExecutionFactory.create(query, model);
             ResultSet results =  qe2.execSelect();
+            
+            
+            if(!results.hasNext()) System.out.println("EMPTY " + minuts);
             while(results.hasNext()) {
                 QuerySolution row = results.nextSolution();
                 avisos.add("showd:" + username + ":" + row.getLiteral("descripcion").getString());
+                
             }
             
             
@@ -128,6 +132,7 @@ public class PatientAgent extends Agent {
                 msg.addReceiver(deviceAgent);
                 send(msg);
             }
+            
            
         }
       
@@ -142,8 +147,10 @@ public class PatientAgent extends Agent {
                 String content = s.substring(Math.min(s.length(), 6),s.length());
                 
                 if(command.equals("ctime:") ) 
+                {
                     checkEvents(content);
-                
+                    System.out.println("Reached ");
+                }
                 else if(command.equals("rlink:"))
                     linked = false;
                 

@@ -53,7 +53,7 @@ public class InterfaceAgent extends Agent {
             }
             catch (Exception e) 
             {
-                System.out.println("ERRORAgents");
+                System.out.println("ERROR");
             }
 
             //Filter the targets
@@ -164,7 +164,7 @@ public class InterfaceAgent extends Agent {
                 else if(command.equals("ndoct:"))
                     newDoctor(content);
                 
-                else System.out.println("Intergace: Can't process the message: " + s);  
+                else System.out.println("Interface: Can't process the message: " + s);  
          
             }
             else block();
@@ -183,8 +183,8 @@ public class InterfaceAgent extends Agent {
             ac.start();
             ac = apc.createNewAgent("deviceAgent", "sid.DevicesAgent",null);
             ac.start();
-            //ac = apc.createNewAgent("eventAgent", "sid.EventAgent",null);
-            //ac.start();
+            ac = apc.createNewAgent("eventAgent", "sid.EventAgent",null);
+            ac.start();
         } catch (Exception e) {
             System.out.println("Error");
         } 

@@ -1,8 +1,6 @@
 
    
 
-import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.OntClass;
 import java.util.Scanner;
 import jade.core.behaviours.CyclicBehaviour;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -14,16 +12,13 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.shared.JenaException;
-import java.io.FileOutputStream;
-import java.util.Iterator;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DevicesAgent extends Agent {
     Scanner keyboard = new Scanner(System.in);
@@ -32,6 +27,11 @@ public class DevicesAgent extends Agent {
             
     public class WaitInstructions extends CyclicBehaviour
     {
+        public String calcularFecha(long minuts) {
+            minuts = minuts * 60000;
+            return new Date(new Timestamp(minuts).getTime()).toString();
+        }
+        
         public void output(String idPacient, String contingut)
         {
             String[] parts = contingut.split(":");
@@ -61,8 +61,8 @@ public class DevicesAgent extends Agent {
             ResultSet results =  qe2.execSelect();
             if (results.hasNext()) {
                 QuerySolution row = results.nextSolution();
-                System.out.println("Avis a pacient " + name + " mitjançant " + row.getLiteral("nombreAparato").getString()
-            + " amb contingut " + contingut);    
+                System.out.println("Avisa al paciente " + name + " mediante " + row.getLiteral("nombreAparato").getString()
+            + " con contedido " + contingut + " en la fecha: "+ calcularFecha(Long.valueOf(parts[2])) );    
             } else {
                 System.out.println("Ningun aparell disponible");
             }

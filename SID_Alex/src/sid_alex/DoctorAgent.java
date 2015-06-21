@@ -31,6 +31,7 @@ import java.util.Iterator;
  */
 public class DoctorAgent extends Agent {
      
+    private String URL_ONTOLOGIA = "/Users/alex/Documents/workspace/FIB_UPC_SID/projectRDF.owl";
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
     String username;
@@ -299,7 +300,7 @@ public class DoctorAgent extends Agent {
         model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         
         try {
-            model1.read("file:/home/carlos/Documentos/sid/proyecto/projectRDF.owl", "RDF/XML");
+            model1.read("file:" + URL_ONTOLOGIA, "RDF/XML");
         }
         catch (JenaException je) {       
            System.out.println("ERROR");
@@ -343,7 +344,7 @@ public class DoctorAgent extends Agent {
         if (!model1.isClosed())
         {
             try {
-                model1.write(new FileOutputStream("/home/carlos/Documentos/sid/proyecto/projectRDF.owl", false));
+                model1.write(new FileOutputStream(URL_ONTOLOGIA, false));
                 model1.close();
             } catch (Exception e) {
             }

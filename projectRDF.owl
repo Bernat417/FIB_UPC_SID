@@ -804,6 +804,28 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Login_Juan -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Login_Juan">
+        <rdf:type rdf:resource="&untitled-ontology-7;LogIn"/>
+        <Password>jua</Password>
+        <Username>Juan</Username>
+        <Identifica rdf:resource="&untitled-ontology-7;Juan"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Login_Maria -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Login_Maria">
+        <rdf:type rdf:resource="&untitled-ontology-7;LogIn"/>
+        <Username>Maria</Username>
+        <Password>mar</Password>
+        <Identifica rdf:resource="&untitled-ontology-7;Maria"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Login_Pedro -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Login_Pedro">
@@ -1021,15 +1043,6 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Visual">
         <rdf:type rdf:resource="&untitled-ontology-7;Medio"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#adsdas -->
-
-    <owl:NamedIndividual rdf:about="&untitled-ontology-7;adsdas">
-        <rdf:type rdf:resource="&untitled-ontology-7;Tratamiento"/>
-        <Nombre_tratamiento>adsdas</Nombre_tratamiento>
     </owl:NamedIndividual>
     
 

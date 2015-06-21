@@ -84,8 +84,7 @@ public class PatientAgent extends Agent {
             "?login a :LogIn.\n" +
             "?login :Username ?user.\n" +
             "?login :Password ?pass.\n" +
-            "?login :Identifica ?persona." + 
-            "?persona :Dni ?dni." +        
+            "?login :Identifica ?persona." +        
             "FILTER regex(?user, ?u). \n" +
             "FILTER regex(?pass, ?p). \n" +
             "}\n"+ "";   

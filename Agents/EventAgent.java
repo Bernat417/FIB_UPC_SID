@@ -108,9 +108,10 @@ public class EventAgent extends Agent {
                      Property tiempo = model1.createProperty(NS +"Tiempo_evento");
                      Property pertenece = model1.createProperty(NS +"Pertenece_a_calendario");
                      Property fecha = model1.createProperty(NS +"Fecha");
-                     model1.addLiteral(I2, fecha, ffi);
+                     model1.addLiteral(I2, fecha, fini);
                      model1.add(I1, realiza,accion);
                      model1.add(I1,pertenece,calendario);
+                     model1.add(I1,tiempo,I2);
                      fini = fini + diff;
                      System.out.println(diff);
                 }

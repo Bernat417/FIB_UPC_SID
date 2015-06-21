@@ -278,6 +278,7 @@ public class DoctorAgent extends Agent {
     {
    
         Iterator<OntClass> classesIt = model1.listNamedClasses();
+        
         Individual trat;
         while ( classesIt.hasNext() )
         {

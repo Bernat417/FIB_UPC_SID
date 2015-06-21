@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sid_carlos;
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
@@ -108,6 +107,8 @@ public class EventAgent extends Agent {
                      Property tiempo = model1.createProperty(NS +"Tiempo_evento");
                      Property pertenece = model1.createProperty(NS +"Pertenece_a_calendario");
                      Property fecha = model1.createProperty(NS +"Fecha");
+                     Property formado_por = model1.createProperty(NS + "Formado_por");
+                     model1.add(calendario,formado_por,I1);
                      model1.addLiteral(I2, fecha, fini);
                      model1.add(I1, realiza,accion);
                      model1.add(I1,pertenece,calendario);

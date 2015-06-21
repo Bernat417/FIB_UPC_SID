@@ -167,7 +167,7 @@ public class PatientAgent extends Agent {
         
         login();
         
-        ArrayList <String> avisos = eventsActuals((long)1432645200);
+        ArrayList <String> avisos = eventsActuals((long)1432674000);
         
         for (int i=0; i < avisos.size(); ++i) {
             System.out.println(avisos.get(i));

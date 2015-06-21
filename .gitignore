@@ -5,3 +5,9 @@
 *.xml
 .DS_Store
 /SID_Alex/nbproject/private/
+/SID_Carlos/nbproject/private/
+/SID_Carlos/build/
+/SID_Carlos/dist/
+/SID_Alex/build/
+/SID_Alex/dist/
+

@@ -143,7 +143,6 @@ public class EventAgent extends Agent {
              QueryExecution qe = QueryExecutionFactory.create(query, model1);
              ResultSet results =  qe.execSelect();
              int id;
-             
              String user;
              while(results.hasNext()) {
                  QuerySolution row = results.nextSolution();

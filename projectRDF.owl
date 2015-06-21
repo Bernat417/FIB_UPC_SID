@@ -172,6 +172,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Pertenece_a_calendario -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-7;Pertenece_a_calendario">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Calendario"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Evento"/>
+        <owl:inverseOf rdf:resource="&untitled-ontology-7;Formado_por"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Pertenece_a_tratamiento -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;Pertenece_a_tratamiento">
@@ -293,7 +303,9 @@
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#prescrito_por -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-7;prescrito_por">
+        <rdfs:range rdf:resource="&untitled-ontology-7;Asistente_Sanitario"/>
         <owl:inverseOf rdf:resource="&untitled-ontology-7;Prescribe"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Prescripción"/>
     </owl:ObjectProperty>
     
 
@@ -395,6 +407,15 @@
 
     <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Mensaje">
         <rdfs:domain rdf:resource="&untitled-ontology-7;Evento"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Nombre_aparato -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-7;Nombre_aparato">
+        <rdfs:domain rdf:resource="&untitled-ontology-7;Aparato"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -691,9 +712,32 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Calendario_Jose -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Calendario_Jose">
+        <rdf:type rdf:resource="&untitled-ontology-7;Calendario"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Calendario_Pedro -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Calendario_Pedro">
+        <rdf:type rdf:resource="&untitled-ontology-7;Calendario"/>
+        <Formado_por rdf:resource="&untitled-ontology-7;PedroCorrer_30_min1432645200"/>
+        <Formado_por rdf:resource="&untitled-ontology-7;PedroCorrer_30_min1432674000"/>
+        <Formado_por rdf:resource="&untitled-ontology-7;PedroCorrer_30_min1432702800"/>
+        <Formado_por rdf:resource="&untitled-ontology-7;PedroCorrer_30_min1432731600"/>
+        <Formado_por rdf:resource="&untitled-ontology-7;PedroCorrer_30_min1432760400"/>
+        <Formado_por rdf:resource="&untitled-ontology-7;PedroCorrer_30_min1432789200"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Correr_30_min -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Correr_30_min">
+        <rdf:type rdf:resource="&untitled-ontology-7;Acción"/>
         <rdf:type rdf:resource="&untitled-ontology-7;Actividad"/>
         <Descripcion>Correr por el parque 30 minutos.</Descripcion>
         <Periodicidad_accion rdf:resource="&untitled-ontology-7;TQ_Correr_30_min"/>
@@ -712,7 +756,17 @@
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Ibuprofeno_2_pastillas -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Ibuprofeno_2_pastillas">
+        <rdf:type rdf:resource="&untitled-ontology-7;Acción"/>
         <rdf:type rdf:resource="&untitled-ontology-7;Administrar_Medicina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Infarto -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Infarto">
+        <rdf:type rdf:resource="&untitled-ontology-7;Dolencia"/>
+        <Nombre_dolencia>Infarto</Nombre_dolencia>
     </owl:NamedIndividual>
     
 
@@ -725,7 +779,56 @@
         <Edad rdf:datatype="&xsd;integer">65</Edad>
         <Apellidos>Perez</Apellidos>
         <Nombre_persona>José</Nombre_persona>
+        <Dispone_calendario rdf:resource="&untitled-ontology-7;Calendario_Jose"/>
+        <Tiene_acceso rdf:resource="&untitled-ontology-7;Radio"/>
         <Padece rdf:resource="&untitled-ontology-7;Sordera"/>
+        <Tiene_acceso rdf:resource="&untitled-ontology-7;Television"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Juan -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Juan">
+        <rdf:type rdf:resource="&untitled-ontology-7;Asistente_Sanitario"/>
+        <rdf:type rdf:resource="&untitled-ontology-7;Persona"/>
+        <Edad rdf:datatype="&xsd;integer">35</Edad>
+        <Nombre_persona>Juan</Nombre_persona>
+        <Apellidos>Fernandez</Apellidos>
+        <Prescribe rdf:resource="&untitled-ontology-7;José"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Login_Jose -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Login_Jose">
+        <rdf:type rdf:resource="&untitled-ontology-7;LogIn"/>
+        <Password>jos</Password>
+        <Username>Jose</Username>
+        <Identifica rdf:resource="&untitled-ontology-7;José"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Login_Juan -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Login_Juan">
+        <rdf:type rdf:resource="&untitled-ontology-7;LogIn"/>
+        <Password>jua</Password>
+        <Username>Juan</Username>
+        <Identifica rdf:resource="&untitled-ontology-7;Juan"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Login_Maria -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Login_Maria">
+        <rdf:type rdf:resource="&untitled-ontology-7;LogIn"/>
+        <Username>Maria</Username>
+        <Password>mar</Password>
+        <Identifica rdf:resource="&untitled-ontology-7;Maria"/>
     </owl:NamedIndividual>
     
 
@@ -754,6 +857,18 @@
     
 
 
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Movil -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Movil">
+        <rdf:type rdf:resource="&untitled-ontology-7;Aparato"/>
+        <Nombre_aparato>Movil</Nombre_aparato>
+        <Utiliza rdf:resource="&untitled-ontology-7;Auditivo"/>
+        <Utiliza rdf:resource="&untitled-ontology-7;Escrito"/>
+        <Utiliza rdf:resource="&untitled-ontology-7;Visual"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#P_Pedro -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;P_Pedro">
@@ -777,18 +892,95 @@
         <Password>pwd</Password>
         <Nombre_persona>Pedro</Nombre_persona>
         <Padece rdf:resource="&untitled-ontology-7;Alzheimer"/>
+        <Dispone_calendario rdf:resource="&untitled-ontology-7;Calendario_Pedro"/>
         <Tiene_prescrito rdf:resource="&untitled-ontology-7;P_Pedro"/>
+        <Tiene_acceso rdf:resource="&untitled-ontology-7;Television"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Sida -->
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#PedroCorrer_30_min -->
 
-    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Sida">
-        <rdf:type rdf:resource="&untitled-ontology-7;Acción"/>
-        <Nombre_accion>Sida</Nombre_accion>
-        <Descripcion>aaaaaaa</Descripcion>
-        <Pertenece_a_tratamiento rdf:resource="&untitled-ontology-7;Tramiento_ejercicio"/>
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;PedroCorrer_30_min">
+        <rdf:type rdf:resource="&untitled-ontology-7;Evento"/>
+        <Pertenece_a_calendario rdf:resource="&untitled-ontology-7;Calendario_Pedro"/>
+        <Realiza_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#PedroCorrer_30_min1432645200 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;PedroCorrer_30_min1432645200">
+        <rdf:type rdf:resource="&untitled-ontology-7;Evento"/>
+        <Pertenece_a_calendario rdf:resource="&untitled-ontology-7;Calendario_Pedro"/>
+        <Realiza_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
+        <Tiempo_evento rdf:resource="&untitled-ontology-7;tpPedroCorrer_30_min1432645200"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#PedroCorrer_30_min1432674000 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;PedroCorrer_30_min1432674000">
+        <rdf:type rdf:resource="&untitled-ontology-7;Evento"/>
+        <Pertenece_a_calendario rdf:resource="&untitled-ontology-7;Calendario_Pedro"/>
+        <Realiza_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
+        <Tiempo_evento rdf:resource="&untitled-ontology-7;tpPedroCorrer_30_min1432674000"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#PedroCorrer_30_min1432702800 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;PedroCorrer_30_min1432702800">
+        <rdf:type rdf:resource="&untitled-ontology-7;Evento"/>
+        <Pertenece_a_calendario rdf:resource="&untitled-ontology-7;Calendario_Pedro"/>
+        <Realiza_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
+        <Tiempo_evento rdf:resource="&untitled-ontology-7;tpPedroCorrer_30_min1432702800"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#PedroCorrer_30_min1432731600 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;PedroCorrer_30_min1432731600">
+        <rdf:type rdf:resource="&untitled-ontology-7;Evento"/>
+        <Pertenece_a_calendario rdf:resource="&untitled-ontology-7;Calendario_Pedro"/>
+        <Realiza_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
+        <Tiempo_evento rdf:resource="&untitled-ontology-7;tpPedroCorrer_30_min1432731600"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#PedroCorrer_30_min1432760400 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;PedroCorrer_30_min1432760400">
+        <rdf:type rdf:resource="&untitled-ontology-7;Evento"/>
+        <Pertenece_a_calendario rdf:resource="&untitled-ontology-7;Calendario_Pedro"/>
+        <Realiza_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
+        <Tiempo_evento rdf:resource="&untitled-ontology-7;tpPedroCorrer_30_min1432760400"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#PedroCorrer_30_min1432789200 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;PedroCorrer_30_min1432789200">
+        <rdf:type rdf:resource="&untitled-ontology-7;Evento"/>
+        <Pertenece_a_calendario rdf:resource="&untitled-ontology-7;Calendario_Pedro"/>
+        <Realiza_accion rdf:resource="&untitled-ontology-7;Correr_30_min"/>
+        <Tiempo_evento rdf:resource="&untitled-ontology-7;tpPedroCorrer_30_min1432789200"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#Radio -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;Radio">
+        <rdf:type rdf:resource="&untitled-ontology-7;Aparato"/>
+        <Nombre_aparato>Radio</Nombre_aparato>
+        <Utiliza rdf:resource="&untitled-ontology-7;Auditivo"/>
     </owl:NamedIndividual>
     
 
@@ -815,8 +1007,8 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-7;Television">
         <rdf:type rdf:resource="&untitled-ontology-7;Aparato"/>
+        <Nombre_aparato>Television</Nombre_aparato>
         <Utiliza rdf:resource="&untitled-ontology-7;Auditivo"/>
-        <Utiliza rdf:resource="&untitled-ontology-7;Escrito"/>
         <Utiliza rdf:resource="&untitled-ontology-7;Visual"/>
     </owl:NamedIndividual>
     
@@ -868,12 +1060,65 @@
     
 
 
-    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#adsdas -->
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#dfsdz -->
 
-    <owl:NamedIndividual rdf:about="&untitled-ontology-7;adsdas">
-        <rdf:type rdf:resource="&untitled-ontology-7;Tratamiento"/>
-        <Nombre_tratamiento>adsdas</Nombre_tratamiento>
-        <Contiene_accion rdf:resource="&untitled-ontology-7;Sida"/>
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;dfsdz">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;integer">313</Fecha>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432645200 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;tpPedroCorrer_30_min1432645200">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;long">1432645200</Fecha>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432674000 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;tpPedroCorrer_30_min1432674000">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;long">1432674000</Fecha>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432702800 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;tpPedroCorrer_30_min1432702800">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;long">1432702800</Fecha>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432731600 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;tpPedroCorrer_30_min1432731600">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;long">1432731600</Fecha>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432760400 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;tpPedroCorrer_30_min1432760400">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;long">1432760400</Fecha>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#tpPedroCorrer_30_min1432789200 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-7;tpPedroCorrer_30_min1432789200">
+        <rdf:type rdf:resource="&untitled-ontology-7;Time_Point"/>
+        <Fecha rdf:datatype="&xsd;long">1432789200</Fecha>
     </owl:NamedIndividual>
     
 

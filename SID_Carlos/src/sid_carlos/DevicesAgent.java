@@ -45,22 +45,13 @@ public class DevicesAgent extends Agent {
             "WHERE {\n" +   
             "?paciente a :Paciente.\n" +
             "?paciente :Nombre_persona ?nombrePaciente.\n" +
-<<<<<<< HEAD
-            "FILTER regex(?nombrePaciente, ?np). \n" +
-=======
->>>>>>> 0c235fa6e20badcd0fcdb49371c75e67e7b02615
             "?paciente :Padece ?dolencia.\n" +
             "?dolencia :Incompatible ?medioDolencia.\n" +      
             "?paciente :Tiene_acceso ?aparato.\n" +
             "?aparato :Utiliza ?medioAparato.\n" +
-<<<<<<< HEAD
-            "FILTER (?medioDolencia != ?medioAparato).\n" +
-            "?aparato :Nombre_aparato ?nombreAparato.\n" +
-=======
             "?aparato :Nombre_aparato ?nombreAparato.\n" +
             "FILTER regex(?nombrePaciente, ?np). \n" +
             "FILTER (?medioDolencia != ?medioAparato).\n" +        
->>>>>>> 0c235fa6e20badcd0fcdb49371c75e67e7b02615
             "}\n"+ "";
             
             ParameterizedSparqlString str = new ParameterizedSparqlString(QueryString);
@@ -70,8 +61,8 @@ public class DevicesAgent extends Agent {
             ResultSet results =  qe2.execSelect();
             if (results.hasNext()) {
                 QuerySolution row = results.nextSolution();
-                System.out.println("Avis a pacient " + name + " mitjançant " + row.getLiteral("nombreAparato").getString()
-            + " amb contingut " + contingut);    
+                System.out.println("Avisa al paciente " + name + " mediante " + row.getLiteral("nombreAparato").getString()
+            + " con contedido " + contingut);    
             } else {
                 System.out.println("Ningun aparell disponible");
             }
@@ -114,11 +105,7 @@ public class DevicesAgent extends Agent {
         model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         
         try {  
-<<<<<<< HEAD
-            model.read("file:/home/adria/SID/projectRDF.owl", "RDF/XML");
-=======
            model.read("file:/home/carlos/Documentos/sid/proyecto/projectRDF.owl", "RDF/XML");
->>>>>>> 0c235fa6e20badcd0fcdb49371c75e67e7b02615
         }
         catch (JenaException je) {        
            System.out.println("ERROR");

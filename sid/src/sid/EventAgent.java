@@ -44,6 +44,10 @@ public class EventAgent extends Agent {
 
     }
     
+    public void 
+    
+    
+    
     protected void setup() {
                
         OntModel model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
@@ -56,27 +60,7 @@ public class EventAgent extends Agent {
            je.printStackTrace();
            System.exit(0);
         }
-        
-        String queryString = 
-            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
-            "SELECT * \n" +
-            "WHERE { ?paciente a :Paciente." +
-            "?paciente :Nombre_persona ?nombre." +
-            "FILTER regex(?nombre,?name)." +    
-            "}\n"+
-            "";
-        
-        getIndividualsByClass("Prescripción", model1);
-        
-        ParameterizedSparqlString str = new ParameterizedSparqlString(queryString);
-        str.setLiteral("name", "Pedro");
-       
-        Query query = QueryFactory.create(str.toString());
-        QueryExecution qe2 = QueryExecutionFactory.create(query, model1);
-        ResultSet results =  qe2.execSelect();
-        ResultSetFormatter.out(System.out, results, query);
-        qe2.close();
-        
+                
         if (!model1.isClosed())
         {
             try {

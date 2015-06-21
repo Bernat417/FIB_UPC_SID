@@ -2,7 +2,7 @@ package sid;
 
 
 import com.hp.hpl.jena.query.ParameterizedSparqlString;
-import com.hp.hpl.jena.query.Query;
+import com.hp.hpl.jena.query.Query; 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
@@ -16,12 +16,12 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.shared.JenaException;
+import jade.domain.FIPAAgentManagement.*;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
 import jade.domain.AMSService;
-import jade.domain.FIPAAgentManagement.*;
-    
+
 public class PatientAgent extends Agent {
      
     public static final long threshold = 43200;
@@ -32,14 +32,13 @@ public class PatientAgent extends Agent {
             
     long endTime, currentTime;
     String username;
-    String password;
+    String password;    
     String dniPersona;
 
     //Comunication Variables
     boolean linked;
-    ClockAgent me;
-    AID  deviceAgent;
-    
+    PatientAgent me;
+    AID  deviceAgent;   
     public class WaitInstructions extends CyclicBehaviour
     {
         
@@ -67,13 +66,17 @@ public class PatientAgent extends Agent {
             {
                 AID agentID = allAgents[i].getName();
                 if (agentID.getLocalName().startsWith("devic")) 
+                {
                     deviceAgent = agentID;
+                    i=allAgents.length;
+                }
             } 
             
             linked = true;
         }
         
          public ArrayList<String> eventsActuals(long minuts) {
+            
             ArrayList<String> avisos = new ArrayList <String>();
             String QueryString = 
                 "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
@@ -96,16 +99,18 @@ public class PatientAgent extends Agent {
             str.setLiteral("u", username.toString());
             str.setLiteral("minuts",minuts);
         
-            Query query = QueryFactory.create(str.toString());
+            Query query = QueryFactory.create(str.toString());            
             QueryExecution qe2 = QueryExecutionFactory.create(query, model);
             ResultSet results =  qe2.execSelect();
             while(results.hasNext()) {
                 QuerySolution row = results.nextSolution();
                 avisos.add("showd:" + username + ":" + row.getLiteral("descripcion").getString());
             }
-        
+            
+            
             qe2.close();
-
+            
+            
             return avisos;
             
         }
@@ -115,16 +120,15 @@ public class PatientAgent extends Agent {
             if(!linked) connectAgents();
             
             ArrayList <String> avisos = eventsActuals(Long.valueOf(minutes));
-        
+            
             for (int i=0; i < avisos.size(); ++i) 
             {
                 ACLMessage msg = new ACLMessage( ACLMessage.INFORM );
-                msg.setContent(avisos.get(i));
+                msg.setContent(avisos.get(i)+":"+minutes);
                 msg.addReceiver(deviceAgent);
                 send(msg);
             }
            
-            
         }
       
           
@@ -143,7 +147,7 @@ public class PatientAgent extends Agent {
                 else if(command.equals("rlink:"))
                     linked = false;
                 
-                else System.out.println("Can't process the message");
+                else System.out.println("Patient: Can't process the message: " + s);
             }
             else block();
         }
@@ -194,7 +198,10 @@ public class PatientAgent extends Agent {
     
     protected void setup() {
         //Load Model
+        linked = false;
+        me = this;
         model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+        
         try {  
             model.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
         }
@@ -204,11 +211,13 @@ public class PatientAgent extends Agent {
            System.exit(0);
         }  
     
+        login();
+        
         //Add Behaviours
         WaitInstructions b = new WaitInstructions();
         this.addBehaviour(b); 
         
-        login();
+        
         
         System.out.println("Patient Agent Ready");
     

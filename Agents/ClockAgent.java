@@ -54,7 +54,7 @@ public class ClockAgent extends Agent {
             for (i=0; i<allAgents.length;i++)
             {
                 AID agentID = allAgents[i].getName();
-                if (agentID.getLocalName().startsWith("pacie") || 
+                if (agentID.getLocalName().startsWith("patie") || 
                 agentID.getLocalName().startsWith("event")) 
                     pool.push(agentID);
             } 
@@ -121,7 +121,7 @@ public class ClockAgent extends Agent {
                 else if(command.equals("rlink:"))
                     linked = false;
                 else
-                    System.out.println("Can't process the message");
+                    System.out.println("Clock: Can't process the message" + s);
                 
             }
             else if (!freeze) incrementTime();

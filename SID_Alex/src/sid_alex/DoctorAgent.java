@@ -30,6 +30,8 @@ import java.util.Iterator;
  * @author carlos
  */
 public class DoctorAgent extends Agent {
+    
+    private String URL_ONTOLOGIA = "/Users/alex/Documents/workspace/FIB_UPC_SID/projectRDF.owl";
      
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
@@ -210,69 +212,67 @@ public class DoctorAgent extends Agent {
         }  
     }
     
-    public void crearPrescripcion() {
-        int id = 1;
-        String queryString = 
-            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
-            "SELECT ?max \n" +
-            "WHERE { ?prescripcion a :Prescripción." +
-            "?prescripcion :Id_prescripcion ?max." +    
-            "}\n"+
-            "ORDER BY DESC(?max) LIMIT 1" +    
-            "";
-        
-        Query query = QueryFactory.create(queryString);
-        QueryExecution qe = QueryExecutionFactory.create(query, model1);
-        ResultSet results =  qe.execSelect();
-        if (results.hasNext()) {
-            QuerySolution row = results.nextSolution();
-            id = row.getLiteral("max").getInt() + 1;
-        }
-        qe.close();
-        
-        System.out.println("Selecciona al paciente al que se va a prescribir: ");
-        
-        System.out.println("Tratamientos disponibles en el sistema");
-        
-        String queryPaciente = 
-            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
-            "SELECT * \n" +
-            "WHERE { ?tratamiento a :Tratamiento." +
-            "}\n"+
-            "";
-
-        Query query2 = QueryFactory.create(queryPaciente);
-        QueryExecution qe2 = QueryExecutionFactory.create(query2, model1);
-        ResultSet resultsPaciente =  qe2.execSelect();
-        ResultSetFormatter.out(System.out, resultsPaciente, query2);
-        qe2.close();
-        Individual T;
-        
-        boolean correcta = false;
-        String nombreTratamiento = "";
-        while(!correcta) {
-           System.out.println("Introduce el nombre del tratamiento seleccionado");
-           nombreTratamiento = keyboard.nextLine();
-
-            Individual t = getIndividual(nombreTratamiento);
-            
-            if (t != null) {
-                correcta = true;
-                OntClass att = model1.getOntClass(NS + "Acción");
-                Individual I1 = model1.createIndividual(NS + nombreA, att);
-                Property nombre = model1.createProperty(NS +"Nombre_accion");
-                Property descripcion = model1.createProperty(NS +"Descripcion");
-                Property pertenece = model1.createProperty(NS +"Pertenece_a_tratamiento");
-                model1.add(I1, nombre, nombreAccion);
-                model1.add(I1,descripcion,descripcionAccion);
-                model1.add(I1,pertenece,t);
-            }
-            else
-                System.out.println("Nombre de tratamiento incorrecto");         
-           
-        }
-        
-    }
+//    public void crearPrescripcion() {
+//        int id = 1;
+//        String queryString = 
+//            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+//            "SELECT ?max \n" +
+//            "WHERE { ?prescripcion a :Prescripción." +
+//            "?prescripcion :Id_prescripcion ?max." +    
+//            "}\n"+
+//            "ORDER BY DESC(?max) LIMIT 1" +    
+//            "";
+//        
+//        Query query = QueryFactory.create(queryString);
+//        QueryExecution qe = QueryExecutionFactory.create(query, model1);
+//        ResultSet results =  qe.execSelect();
+//        if (results.hasNext()) {
+//            QuerySolution row = results.nextSolution();
+//            id = row.getLiteral("max").getInt() + 1;
+//        }
+//        qe.close();
+//        
+//        System.out.println("Selecciona al paciente al que se va a prescribir: ");
+//        
+//        System.out.println("Tratamientos disponibles en el sistema");
+//        
+//        String queryPaciente = 
+//            "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
+//            "SELECT * \n" +
+//            "WHERE { ?tratamiento a :Tratamiento." +
+//            "}\n"+
+//            "";
+//
+//        Query query2 = QueryFactory.create(queryPaciente);
+//        QueryExecution qe2 = QueryExecutionFactory.create(query2, model1);
+//        ResultSet resultsPaciente =  qe2.execSelect();
+//        ResultSetFormatter.out(System.out, resultsPaciente, query2);
+//        qe2.close();
+//        Individual T;
+//        
+//        boolean correcta = false;
+//        String nombreTratamiento = "";
+//        while(!correcta) {
+//           System.out.println("Introduce el nombre del tratamiento seleccionado");
+//           nombreTratamiento = keyboard.nextLine();
+//
+//            Individual t = getIndividual(nombreTratamiento);
+//            
+//            if (t != null) {
+//                correcta = true;
+//                OntClass att = model1.getOntClass(NS + "Acción");
+//                Individual I1 = model1.createIndividual(NS + nombreA, att);
+//                Property nombre = model1.createProperty(NS +"Nombre_accion");
+//                Property descripcion = model1.createProperty(NS +"Descripcion");
+//                Property pertenece = model1.createProperty(NS +"Pertenece_a_tratamiento");
+//                model1.add(I1, nombre, nombreAccion);
+//                model1.add(I1,descripcion,descripcionAccion);
+//                model1.add(I1,pertenece,t);
+//            }
+//            else
+//                System.out.println("Nombre de tratamiento incorrecto");                  
+//        }   
+//    }
    
     public Individual getIndividual(String nombre)
     {
@@ -300,7 +300,7 @@ public class DoctorAgent extends Agent {
         model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         
         try {
-            model1.read("file:/home/carlos/Documentos/sid/proyecto/projectRDF.owl", "RDF/XML");
+            model1.read("file:" + URL_ONTOLOGIA, "RDF/XML");
         }
         catch (JenaException je) {       
            System.out.println("ERROR");
@@ -320,8 +320,8 @@ public class DoctorAgent extends Agent {
            creaAccion();
         else if(opcion.equals("2"))
            creaTratamiento();
-        else if(opcion.equals("3"))
-           crearPrescripcion();
+//        else if(opcion.equals("3"))
+//           crearPrescripcion();
                 
         //Create a new query
              String queryString = 
@@ -344,7 +344,7 @@ public class DoctorAgent extends Agent {
         if (!model1.isClosed())
         {
             try {
-                model1.write(new FileOutputStream("/home/carlos/Documentos/sid/proyecto/projectRDF.owl", false));
+                model1.write(new FileOutputStream(URL_ONTOLOGIA, false));
                 model1.close();
             } catch (Exception e) {
             }

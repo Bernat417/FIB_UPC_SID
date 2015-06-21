@@ -27,8 +27,8 @@ public class EventAgent extends Agent {
             "?periodo :Tiempo_inicio ?tini.\n" +
             "?periodo :Tiempo_Final ?tfi.\n" +
             "?tini :Fecha ?fini. \n" +
-            "?tfi :Fecha ?ffi." +
-            "" +   
+            "?tfi :Fecha ?ffi.\n" +
+            "FILTER (?id = ?idP).\n" +   
             "}\n" + "";    
     }
 }

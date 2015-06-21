@@ -4,4 +4,10 @@
 /sid/dist/
 *.xml
 .DS_Store
+<<<<<<< HEAD
 /SID_Alex/nbproject/private/
+=======
+/SID_Carlos/nbproject/private/
+/SID_Carlos/build/
+/SID_Carlos/dist/
+>>>>>>> e57699fffa3ea729e20e2f653cdd6def76f0c2b1

@@ -4,10 +4,18 @@
 /sid/dist/
 *.xml
 .DS_Store
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 /SID_Alex/nbproject/private/
 /SID_Carlos/nbproject/private/
 /SID_Carlos/build/
 /SID_Carlos/dist/
+<<<<<<< HEAD
 /SID_Alex/build/
 /SID_Alex/dist/
 catalog*
+=======
+>>>>>>> e57699fffa3ea729e20e2f653cdd6def76f0c2b1
+>>>>>>> master

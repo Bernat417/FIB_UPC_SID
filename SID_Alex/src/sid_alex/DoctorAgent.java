@@ -1,11 +1,6 @@
-//Cambia el path del modelo
-//Indica en el startGUI.sh donde se encuentra el jar de nuestro proyecto.
-
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import java.util.Scanner;
-
-
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.ParameterizedSparqlString;

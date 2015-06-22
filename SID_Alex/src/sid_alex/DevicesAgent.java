@@ -1,6 +1,4 @@
 
-   
-
 import java.util.Scanner;
 import jade.core.behaviours.CyclicBehaviour;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -22,6 +20,7 @@ import java.util.Date;
 
 public class DevicesAgent extends Agent {
     private String URL_ONTOLOGIA = "/Users/alex/Documents/workspace/FIB_UPC_SID/projectRDF.owl";
+    
     Scanner keyboard = new Scanner(System.in);
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
     OntModel model;
@@ -83,7 +82,10 @@ public class DevicesAgent extends Agent {
                 //El missatge s'hauria de parsejar(showd:name:action_description)
                 //Hotfix
                 if (command.equals("showd:")) {
-                    output("idPaient",content);  
+                    System.out.println("Can't process the message " + content);
+                    output("idPaient",content);
+                    
+                   
                 } else {
                     System.out.println("Can't process the message");
                 }
@@ -117,7 +119,7 @@ public class DevicesAgent extends Agent {
         WaitInstructions b = new WaitInstructions();
         this.addBehaviour(b);
         
-        System.out.println("Interface Agent Ready");
+        System.out.println("Devices Agent Ready");
     
     }     
 

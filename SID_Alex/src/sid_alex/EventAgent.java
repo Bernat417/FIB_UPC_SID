@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
-import static com.hp.hpl.jena.ontology.OntDocumentManager.NS;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -17,25 +9,34 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.shared.JenaException;
-import jade.core.Agent;
+import jade.domain.FIPAAgentManagement.AMSAgentDescription;
+import jade.domain.FIPAAgentManagement.SearchConstraints;
+import jade.wrapper.AgentController;
+import jade.wrapper.PlatformController;
 import java.io.FileOutputStream;
 import java.util.Iterator;
+import java.util.Stack;
+import jade.core.behaviours.CyclicBehaviour;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.shared.JenaException;
+import jade.core.AID;
+import jade.core.Agent;
+import jade.lang.acl.ACLMessage;
+import jade.domain.AMSService;
 
-/**
- *
- * @author carlos
- */
+
 public class EventAgent extends Agent {
     
-    private String URL_ONTOLOGIA = "/Users/alex/Documents/workspace/FIB_UPC_SID/projectRDF.owl";
     OntModel model1;
     String NS = "http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#";
     long endTime;
     long beginTime;
     
+     public class WaitInstructions extends CyclicBehaviour
+    {
         public Individual getIndividual(String nombre)
     {
    
@@ -122,12 +123,12 @@ public class EventAgent extends Agent {
         qe.close(); 
     }
     
-    public void crearTodosEventos(long currentTime) {
+    public void crearTodosEventos(String time) {
+        long currentTime = Long.valueOf(time);
         if ((currentTime +(4*7*24*60))> endTime ) {
-            beginTime = currentTime;
-            endTime += (4*7*24*60);
-        }
-         String queryString = 
+            beginTime = endTime;
+            endTime += (5*7*24*60);
+        String queryString = 
             "PREFIX :<http://www.semanticweb.org/adriàabella/ontologies/2015/4/untitled-ontology-7#>" +
             "SELECT  ?id ?user\n" +
             "WHERE { ?prescripcion a :Prescripción.\n" +
@@ -144,22 +145,45 @@ public class EventAgent extends Agent {
              QueryExecution qe = QueryExecutionFactory.create(query, model1);
              ResultSet results =  qe.execSelect();
              int id;
+             
              String user;
              while(results.hasNext()) {
                  QuerySolution row = results.nextSolution();
                  id = row.getLiteral("id").getInt();
                  user = row.getLiteral("user").getString();
              }
-             
+        
              qe.close();
+             System.out.println("Events generated");  
+        }
     }
     
+    public void action()
+        {
+            ACLMessage msg = myAgent.receive();
+            if(msg != null)
+            {
+                String s = msg.getContent();
+                String command = s.substring(0, Math.min(s.length(), 6));
+                String content = s.substring(Math.min(s.length(), 6),s.length());
+                
+                if (command.equals("ctime:")) 
+                    crearTodosEventos(content);
+                
+                else System.out.println("Events: Can't process the message: " + s);  
+         
+            }
+            else block();
+            
+        }
+    
+    }
     protected void setup() {
         
         model1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
         
         try {
-            model1.read("file:" + URL_ONTOLOGIA, "RDF/XML");
+            model1.read("file:/home/bernat/Repo/SID/projectRDF.owl", "RDF/XML");
         }
         catch (JenaException je) {       
            System.out.println("ERROR");
@@ -167,9 +191,8 @@ public class EventAgent extends Agent {
            System.exit(0);
         }
         
-        beginTime = 1432645200;
-        endTime = 1432800200;
-        
+        beginTime = endTime = 1432645200;
+        /*
         creaEventos(1,"Pedro");
         
         String queryPaciente = 
@@ -183,16 +206,11 @@ public class EventAgent extends Agent {
         QueryExecution qe2 = QueryExecutionFactory.create(query2, model1);
         ResultSet resultsPaciente =  qe2.execSelect();
         ResultSetFormatter.out(System.out, resultsPaciente, query2);
-        qe2.close();
+        qe2.close();*/
         
-        if (!model1.isClosed()) {
-            try {
-                model1.write(new FileOutputStream(URL_ONTOLOGIA, false));
-                model1.close();
-            } catch (Exception e) {
-                
-            }    
-        }
+        WaitInstructions b = new WaitInstructions();
+        this.addBehaviour(b);
         
+         System.out.println("Events Agent Ready");
     }
 }

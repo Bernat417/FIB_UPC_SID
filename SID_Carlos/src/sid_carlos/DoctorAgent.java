@@ -65,7 +65,7 @@ public class DoctorAgent extends Agent {
             "?login a :LogIn.\n" +
             "?login :Username ?user.\n" +
             "?login :Password ?pass.\n" +
-            "?login :Identifica ?persona." +         
+            "?login :Identifica_asistente ?persona." +         
             "FILTER regex(?user, ?u). \n" +
             "FILTER regex(?pass, ?p). \n" +
             "}\n"+ "";   
@@ -123,7 +123,7 @@ public class DoctorAgent extends Agent {
                 "SELECT ?userp\n" +
                 "WHERE {" +   
                 "?login a :LogIn.\n" +
-                "?login :Identifica ?persona. \n" +   
+                "?login :Identifica_asistente ?persona. \n" +   
                 "?login :Username ?user.\n" +
                 "?persona :Trata ?paciente.\n" +
                 "?paciente :Nombre_persona ?nombre.\n"  +       
@@ -157,7 +157,7 @@ public class DoctorAgent extends Agent {
             "WHERE {\n" +   
             "?login a :LogIn.\n" +
             "?login :Username ?user.\n" +   
-            "?login :Identifica ?persona.\n" +
+            "?login :Identifica_asistente ?persona.\n" +
             "?persona :Dispone_calendario ?calendario.\n" +
             "?calendario :Formado_por ?evento.\n" +
             "?evento :Tiempo_evento ?timePoint.\n" +
@@ -553,7 +553,7 @@ public class DoctorAgent extends Agent {
             "?login a :LogIn.\n" +
             "?login :Username ?user.\n" +
             "?login :Password ?pass.\n" +
-            "?login :Identifica ?persona." +         
+            "?login :Identifica_asistente ?persona." +         
             "FILTER regex(?user, ?u). \n" +
             "FILTER regex(?pass, ?p). \n" +
             "}\n"+ "";   

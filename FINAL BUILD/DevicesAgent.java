@@ -1,4 +1,5 @@
-package sid;
+
+package sid;   
 
 import java.util.Scanner;
 import jade.core.behaviours.CyclicBehaviour;
@@ -81,10 +82,7 @@ public class DevicesAgent extends Agent {
                 //El missatge s'hauria de parsejar(showd:name:action_description)
                 //Hotfix
                 if (command.equals("showd:")) {
-                    System.out.println("Can't process the message " + content);
-                    output("idPaient",content);
-                    
-                   
+                    output("idPaient",content);  
                 } else {
                     System.out.println("Can't process the message");
                 }

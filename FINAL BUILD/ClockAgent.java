@@ -135,6 +135,10 @@ public class ClockAgent extends Agent {
                 
                 else if(command.equals("rlink:"))
                     linked = false;
+                
+                if(command.equals("ctime:"))
+                    time = Long.valueOf(content);
+                
                 else
                     System.out.println("Clock: Can't process the message" + s);
                 
